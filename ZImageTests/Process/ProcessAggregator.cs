@@ -44,6 +44,7 @@ namespace ZImageTests.Process
                 if (procRes.IsOk == false)
                     break;
                 currRes = procRes;
+                currProcess = currProcess.Next;
             }
             return currRes;
         }

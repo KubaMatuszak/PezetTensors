@@ -52,5 +52,29 @@ namespace PZWrapper.Extensions
                 }
         }
 
+        public static byte[] ConvertBitmapToAverageByteArray(Bitmap bitmap)
+        {
+            int width = bitmap.Width;
+            int height = bitmap.Height;
+            byte[] byteArray = new byte[width * height]; // Array to hold average values
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color pixel = bitmap.GetPixel(x, y);
+                    // Calculate the average of the RGB components
+                    byte average = (byte)((pixel.R + pixel.G + pixel.B) / 3); // Calculate average
+
+                    // Assign the average to the byte array
+                    byteArray[y * width + x] = average;
+                }
+            }
+
+            return byteArray;
+        }
+
+
+
     }
 }

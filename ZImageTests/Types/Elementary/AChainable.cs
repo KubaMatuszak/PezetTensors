@@ -8,7 +8,22 @@ using ZImageTests.Process;
 
 namespace ZImageTests.Types.Elementary
 {
-    public abstract class AProcessable<Tin> : AChainable<AProcessable<Tin>>
+    public abstract class AChainable<TBase> where TBase : AChainable<TBase>
+    {
+        public TBase Next { get; set; }
+        public TBase Prev { get; set; }
+        public TBase Root => Prev != null ? Prev.Root : (this as TBase);
+        public AChainable<TBase> SetNext(TBase next)
+        {
+            Next = next;
+            next.Prev = (this as TBase);
+            return next;
+        }
+    }
+
+
+
+    public abstract class AProcess<Tin> : AChainable<ABwProcess>
     {
         public abstract ProcessResult<Tin> Process(Tin tIn);
         public ProcessResult<Tin> ProcessAll(Tin bWImage)
@@ -18,27 +33,28 @@ namespace ZImageTests.Types.Elementary
                 res = this.Process(res.ResBwIm);
             return res;
         }
-    }
-
-
-
-    public abstract class ABwProcess : AProcessable<BWImage>
-    {
         public abstract string ProcessName { get; }
     }
 
 
-    public abstract class AChainable<TBase> where TBase : AChainable<TBase>
+    public abstract class ABwProcess001 : AProcess<BWImage>
     {
-        public AChainable<TBase> Next { get; set; }
-        public AChainable<TBase> Prev { get; set; }
-        public AChainable<TBase> Root =>  Prev != null? Prev.Root: this;
-        public AChainable<TBase> SetNext(AChainable<TBase> next)
+
+    }
+
+
+    public abstract class ABwProcess : AProcess<BWImage>
+    {
+    }
+
+    public static class Test
+    {
+        public static void Test001() 
         {
-            Next = next;
-            next.Prev = this;
-            return next;
+            ABwProcess001 aBwProcess = null;
+            var aasdf = aBwProcess.Next;
         }
     }
+
 
 }
