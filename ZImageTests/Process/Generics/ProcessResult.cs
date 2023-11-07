@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZImageTests.Process
+namespace ZImageTests.Process.Generics
 {
     public class ProcessResult<Tin>
     {

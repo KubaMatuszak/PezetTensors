@@ -1,6 +1,7 @@
 ﻿using PZWrapper.Types;
 using PZWrapper.Extensions;
 using ZImageTests.Types.Elementary;
+using ZImageTests.Process.Generics;
 
 namespace ZImageTests.Process
 {

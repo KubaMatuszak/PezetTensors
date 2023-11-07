@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZImageTests.Process;
+using ZImageTests.Process.Generics;
 
 namespace ZImageTests.Types.Elementary
 {
@@ -23,7 +23,7 @@ namespace ZImageTests.Types.Elementary
 
 
 
-    public abstract class AProcess<Tin> : AChainable<ABwProcess>
+    public abstract class AProcess<Tin> : AChainable<AProcess<Tin>>
     {
         public abstract ProcessResult<Tin> Process(Tin tIn);
         public ProcessResult<Tin> ProcessAll(Tin bWImage)
@@ -37,23 +37,8 @@ namespace ZImageTests.Types.Elementary
     }
 
 
-    public abstract class ABwProcess001 : AProcess<BWImage>
-    {
-
-    }
-
-
     public abstract class ABwProcess : AProcess<BWImage>
     {
-    }
-
-    public static class Test
-    {
-        public static void Test001() 
-        {
-            ABwProcess001 aBwProcess = null;
-            var aasdf = aBwProcess.Next;
-        }
     }
 
 
