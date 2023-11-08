@@ -23,3 +23,4 @@ EXPORTED_METHOD double MultiplyAHSum(int len, double* doublesA, double* doublesB
 EXPORTED_METHOD double* MultiplyIndiv(int len, double* doublesA, double* doublesB);
 EXPORTED_METHOD double* MatrixMultiply(int nARows, int nAColsBRows, int nBCols, double* doublesA, double* doublesB);
 EXPORTED_METHOD void Inverse256(int len, double* doubles);
+EXPORTED_METHOD double* ArrayCopy(int len, double* doubles);

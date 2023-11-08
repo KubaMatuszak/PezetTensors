@@ -30,6 +30,8 @@ double* MultiplyIndiv(int len, double* doublesA, double* doublesB)
     return arr;
 }
 
+
+
 double* MatrixMultiply(int nARows, int nAColsBRows, int nBCols, double* doublesA, double* doublesB)
 {
     double* myDynamic2DArray = new double[nARows];
@@ -68,3 +70,13 @@ int CppMethod(MyStruct* myStruct){
     return res;
 }
 
+double* ArrayCopy(int len, double* doubles)
+{
+    double* myDynamic2DArray = new double[len];
+
+
+    for (int i = 0; i < len; ++i) {
+        myDynamic2DArray[i] = doubles[i];
+    }
+    return myDynamic2DArray;
+}
