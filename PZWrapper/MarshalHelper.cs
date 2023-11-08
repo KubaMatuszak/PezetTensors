@@ -15,10 +15,10 @@ namespace PZWrapper
 
 
 
-        public static bool TryPtrToIntArr(Func<IntPtr> func, int len, int[] values, Exception exception) 
+        public static bool TryPtrToArr(Func<IntPtr> func, int len, int[] values, Exception exception) 
             => TryRun(func, (ptr) => { Marshal.Copy(ptr, values, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
 
-        public static bool TryPtrToDoubleArr(Func<IntPtr> func, int len, double[] values, Exception exception)
+        public static bool TryPtrToArr(Func<IntPtr> func, int len, double[] values, Exception exception)
             => TryRun(func, (ptr) => { Marshal.Copy(ptr, values, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
 
 
@@ -57,7 +57,6 @@ namespace PZWrapper
 
             return true;
         }
-
 
 
     }

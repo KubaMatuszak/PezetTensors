@@ -16,7 +16,7 @@ namespace PZControlsWpf.ImageHelpers
     {
 
 
-        public static ImageSource ToImageSource(this Bitmap bmp) => ImageHelpers.ImageHelper.ToImageSource(bmp);
+        public static ImageSource ToImageSource(this Bitmap bmp) => ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp);
 
         public static byte[] GetYourImageAsByteArray(int width, int height)
         {
@@ -139,6 +139,7 @@ namespace PZControlsWpf.ImageHelpers
                     BitmapSizeOptions.FromEmptyOptions()
                 );
             }
+            catch (Exception ex) { return null; }
             finally
             {
                 NativeMethods.DeleteObject(hBitmap);

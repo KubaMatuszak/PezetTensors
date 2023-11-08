@@ -2,12 +2,12 @@
 using ZImageTests.Process.Generics;
 using ZImageTests.Types.Elementary;
 
-namespace ZImageTests.Process
+namespace ZImageTests.Process.Simples
 {
     public class ToMonochromeProcess : ABwProcess
     {
         public override string ProcessName => GetType().Name;
-        public override ProcessResult<BWImage> Process(BWImage tIn)
+        public override ProcessResult<Matrix2D> Process(Matrix2D tIn)
         {
             throw new System.NotImplementedException();
         }

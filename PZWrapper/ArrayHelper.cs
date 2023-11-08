@@ -8,7 +8,7 @@ namespace PZWrapper
 {
     public static class ArrayHelper
     {
-        public static double[,] Reshape(this double[] data, int nCols) 
+        public static double[,] ReshapeByNinRow(this double[] data, int nCols) 
         {
             var nRows = data.Length / nCols;
             if(data.Length % nCols != 0)
@@ -27,15 +27,15 @@ namespace PZWrapper
 
         public static double[] Linearize(this double[,] data)
         {
-            var nCols = data.GetLength(0);
-            var nRows = data.GetLength(1);
+            var nCols = data.GetLength(1);
+            var nRows = data.GetLength(0);
             var linear = new double[nCols * nRows];
-            for (int i = 0; i < nRows; ++i)
+            for (int rowNo = 0; rowNo < nRows; ++rowNo)
             {
-                for (int j = 0; j < nCols; ++j)
+                for (int colNo = 0; colNo < nCols; ++colNo)
                 {
-                    var d = data[j, i];
-                    linear[i * nCols + j] = d;
+                    var d = data[rowNo, colNo];
+                    linear[rowNo * nCols + colNo] = d;
                 }
             }
             return linear;

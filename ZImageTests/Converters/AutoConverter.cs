@@ -39,9 +39,9 @@ namespace PZControlsWpf.Converters
 
     public class BWImage2ImageSourceConv : AutoConverter
     {
-        public override Type TypeIn => typeof(BWImage);
+        public override Type TypeIn => typeof(Matrix2D);
         public override Type TypeOut => typeof(ImageSource);
-        public override Func<object, object> Func => (o) => ((BWImage)System.Convert.ChangeType(o, typeof(BWImage))).ToBitmap().ToImageSource();
+        public override Func<object, object> Func => (o) => ((Matrix2D)System.Convert.ChangeType(o, typeof(Matrix2D))).ToBitmap().ToImageSource();
 
     }
 
@@ -49,7 +49,7 @@ namespace PZControlsWpf.Converters
     {
         public override Type TypeIn => typeof(Matrix2D);
         public override Type TypeOut => typeof(ImageSource);
-        public override Func<object, object> Func => (o) => new BWImage((Matrix2D)System.Convert.ChangeType(o, typeof(Matrix2D))).ToBitmap().ToImageSource();
+        public override Func<object, object> Func => (o) => new Matrix2D((Matrix2D)System.Convert.ChangeType(o, typeof(Matrix2D))).ToBitmap().ToImageSource();
     }
 
     public class Bitmap2ImageSourceConv : AutoConverter

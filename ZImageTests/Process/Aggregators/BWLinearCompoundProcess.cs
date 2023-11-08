@@ -7,5 +7,5 @@ using ZImageTests.Process.Generics;
 namespace ZImageTests.Process.Aggregators
 {
     
-    public class BWProcessAggregator : AProcessAggregator<BWImage> { }
+    public class BWLinearCompoundProcess : ALinearCompoundProcess<Matrix2D> { }
 }

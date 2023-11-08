@@ -4,15 +4,15 @@ using ZImageTests.Types.Elementary;
 
 namespace ZImageTests.Process.Generics
 {
-    public abstract class AProcessAggregator<Tin>
+    public abstract class ALinearCompoundProcess<Tin>
     {
         public static void Test()
         {
-            AProcessAggregator<Tin> aProcessAggregator = null;
+            ALinearCompoundProcess<Tin> aProcessAggregator = null;
             var first = aProcessAggregator.ProcessList.First();
             //first.Next
         }
-        protected AProcessAggregator() { }
+        protected ALinearCompoundProcess() { }
         public List<AProcess<Tin>> ProcessList = new List<AProcess<Tin>>();
         public void Append(AProcess<Tin> process)
         {

@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Converters\ConcreteConverters\" />
     <Folder Include="Model\" />
-    <Folder Include="Process\PreProcesses\" />
     <Folder Include="TestImages\" />
   </ItemGroup>
 

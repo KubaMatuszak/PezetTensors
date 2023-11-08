@@ -2,19 +2,20 @@
 using PZWrapper.Extensions;
 using ZImageTests.Types.Elementary;
 using ZImageTests.Process.Generics;
-
-namespace ZImageTests.Process
+using PZWrapper.Links;
+using PZWrapper.Extensions;
+namespace ZImageTests.Process.Simples
 {
     public class InvertProcess : ABwProcess
     {
         public override string ProcessName => GetType().Name;
 
-        public override ProcessResult<BWImage> Process(BWImage bWImage)
+        public override ProcessResult<Matrix2D> Process(Matrix2D bWImage)
         {
             var matrix = bWImage.ToMatrix2D();
-            matrix.Inverse256();
-            BWImage res = new BWImage(matrix);
-            ProcessResult<BWImage> result = new ProcessResult<BWImage>();
+            
+            Matrix2D res = new Matrix2D(matrix);
+            ProcessResult<Matrix2D> result = new ProcessResult<Matrix2D>();
             result.IsOk = true;
             result.ResBwIm = res;
             return result;

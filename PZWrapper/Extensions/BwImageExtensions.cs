@@ -20,30 +20,30 @@ namespace PZWrapper.Extensions
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
-        public static Bitmap ToBitmap(this BWImage bwim)
+        public static Bitmap ToBitmap(this Matrix2D bwim)
         {
             Bitmap bitmap = new Bitmap(bwim.Width, bwim.Height);
             bwim.ForEach((r, c) => bitmap.SetPixel(c, r, bwim.Data[r, c].ToGrayColor()));
             return bitmap;
         }
 
-        public static BWImage ForEachPixChanClone(this BWImage bwim, Func<double, double> func)
+        public static Matrix2D ForEachPixChanClone(this Matrix2D bwim, Func<double, double> func)
         {
-            BWImage cloned = new BWImage(bwim.Width, bwim.Height);
+            Matrix2D cloned = new Matrix2D(bwim.Width, bwim.Height);
             bwim.ForEach((r, c) => cloned.Data[r, c] = func.Invoke(r));
             return cloned;
         }
 
-        public static BWImage Clone(this BWImage bwim)
+        public static Matrix2D Clone(this Matrix2D bwim)
         {
-            BWImage cloned = new BWImage(bwim.Width, bwim.Height);
+            Matrix2D cloned = new Matrix2D(bwim.Width, bwim.Height);
             bwim.ForEach((r, c) => cloned.Data[r, c] = bwim.Data[r, c]);
             return cloned;
         }
 
-        public static Matrix2D ToMatrix2D(this BWImage bwim) => new Matrix2D(bwim.Data);
+        public static Matrix2D ToMatrix2D(this Matrix2D bwim) => new Matrix2D(bwim.Data);
 
-        public static void ForEach(this BWImage bwim, Action<int, int> action)
+        public static void ForEach(this Matrix2D bwim, Action<int, int> action)
         {
             for (int rowNo = 0; rowNo < bwim.Height; rowNo++)
                 for (int colNo = 0; colNo < bwim.Width; colNo++)

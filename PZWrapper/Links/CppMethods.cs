@@ -12,7 +12,7 @@ namespace PZWrapper.Links
     /// <summary>
     /// Binding class for C++ methods from dll. 
     /// </summary>
-    internal static class CppMethods
+    public static class CppMethods
     {
         public const string dllPath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\x64\\Debug\\PezetTensors.dll";
 
@@ -34,5 +34,11 @@ namespace PZWrapper.Links
 
         [DllImport(dllPath)]
         public static extern void Inverse256(int len, double[] doubles);
+
+        [DllImport(dllPath)]
+        public static extern IntPtr SquareBlur(int width, int height, int radius, double[] doubles);
+
+        [DllImport(dllPath)]
+        public static extern IntPtr FifeDoubles();
     }
 }

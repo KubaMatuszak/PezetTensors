@@ -2,12 +2,12 @@
 using ZImageTests.Process.Generics;
 using ZImageTests.Types.Elementary;
 
-namespace ZImageTests.Process
+namespace ZImageTests.Process.Simples
 {
     public class ExposureCompensation : ABwProcess
     {
         public override string ProcessName => GetType().Name;
-        public override ProcessResult<BWImage> Process(BWImage tIn) => new ProcessResult<BWImage>() { ResBwIm = tIn, IsOk = true };
+        public override ProcessResult<Matrix2D> Process(Matrix2D tIn) => new ProcessResult<Matrix2D>() { ResBwIm = tIn, IsOk = true };
     }
 
 

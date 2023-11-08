@@ -19,6 +19,9 @@ using System.Windows.Shapes;
 using PZWrapper.Extensions;
 using static System.Net.Mime.MediaTypeNames;
 using ZImageTests.Process;
+using ZImageTests.Visualisation;
+using System.Windows.Threading;
+using System.Runtime.InteropServices;
 
 namespace ZImageTests
 {
@@ -34,20 +37,31 @@ namespace ZImageTests
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var ptr = PZWrapper.Links.CppMethods.FifeDoubles();
+            double[] resVals = new double[5];
+            Marshal.Copy(ptr, resVals, 0, 5); 
+            //Marshal.FreeHGlobal(ptr);
+
+
             var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
-            BWImage bWImage = new BWImage(imagePath);
-            var bmp = RunProcess(bWImage);
-            //var matrix = bWImage.ToMatrix2D();
-            //matrix.Inverse256();
-            //BWImage res = new BWImage(matrix);
-            //var bmp = res.ToBitmap();
-            var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
-            MyZImage.Show(src3);
+            Matrix2D bWImage = new Matrix2D(imagePath);
+            //var bmp = RunProcess(bWImage);
+            ////var matrix = bWImage.ToMatrix2D();
+            ////matrix.Inverse256();
+            ////BWImage res = new BWImage(matrix);
+            ////var bmp = res.ToBitmap();
+            //var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
+            //MyZImage.Show(src3);
+            
+            var t1 = DateTime.Now;
+            BackJobs.RunAndInformDispatched(Dispatcher ,() => TestRun(bWImage), (im) => MyZImage.Show(im));
+            var t2 = DateTime.Now;
+            var diff = (t2 - t1).TotalMilliseconds;
         }
 
-        private BWImage RunProcess(BWImage bWImage)
+        private Matrix2D TestRun(Matrix2D bWImage)
         {
-            var sdf = StaticPreProcess.Aggregator;
+            var sdf = StaticPreProcess.SampleAggregator;
             var res = sdf.ApplyProcess(bWImage);
             return res.ResBwIm;
         }

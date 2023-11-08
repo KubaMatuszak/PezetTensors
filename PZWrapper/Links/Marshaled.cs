@@ -1,10 +1,6 @@
-﻿using PZWrapper.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PZWrapper.Extensions;
+using PZWrapper.Types;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PZWrapper.Links
 {
@@ -20,28 +16,48 @@ namespace PZWrapper.Links
 
         public static Matrix2D MulBy2(this Matrix2D matrixA, Matrix2D matrixB)
         {
-            var multPtr = CppMethods.MatrixMultiply(2, 2, 2, matrixA.Values.Linearize(), matrixA.Values.Linearize());
+            var multPtr = CppMethods.MatrixMultiply(2, 2, 2, matrixA.Data.Linearize(), matrixA.Data.Linearize());
             var mult = MarshalHelper.GetFromPtr(4, multPtr);
-            var reshaped = mult.Reshape(matrixB.NCols);
+            var reshaped = mult.ReshapeByNinRow(matrixB.NCols);
             var resMatrix = new Matrix2D(reshaped);
             return resMatrix;
         }
 
         public static Matrix2D MulBy(this Matrix2D matrixA, Matrix2D matrixB)
         {
-            var linearB = matrixB.Values.Linearize();
-            var linearA = matrixA.Values.Linearize();
+            var linearB = matrixB.Data.Linearize();
+            var linearA = matrixA.Data.Linearize();
             var len = linearB.Length;
             double[] doubles = new double[len];
-            var res = MarshalHelper.TryPtrToDoubleArr(() => CppMethods.MatrixMultiply(2, 2, 2, linearA, linearB), linearB.Length, doubles, null);
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.MatrixMultiply(2, 2, 2, linearA, linearB), linearB.Length, doubles, null);
             if (res == false)
                 return null;
-            var reshaped = doubles.Reshape(linearB.Length);
+            var reshaped = doubles.ReshapeByNinRow(linearB.Length);
             Matrix2D resMatrix = new Matrix2D(reshaped);
             return resMatrix;
         }
 
+        public static Matrix2D SquareBlur(Matrix2D bWImage, int rad)
+        {
+            try
+            {
 
 
+                var inputMatrix = bWImage.ToMatrix2D();
+                var inputLinear = inputMatrix.Data.Linearize();
+                var len = inputLinear.Length;
+                double[] doubles = new double[100];
+                var ptr = CppMethods.SquareBlur(bWImage.Width, bWImage.Height, rad, inputLinear);
+                Marshal.Copy(ptr, doubles, 0, len);
+                Marshal.FreeHGlobal(ptr);
+                var reshaped = doubles.ReshapeByNinRow(bWImage.Width);
+                Matrix2D resMatrix = new Matrix2D(reshaped);
+                return resMatrix;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
