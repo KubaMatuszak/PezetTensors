@@ -47,8 +47,16 @@ namespace PZWrapper.Links
                 var inputLinear = inputMatrix.Data.Linearize();
                 var len = inputLinear.Length;
                 double[] doubles = new double[100];
-                var ptr = CppMethods.SquareBlur(bWImage.Width, bWImage.Height, rad, inputLinear);
-                Marshal.Copy(ptr, doubles, 0, len);
+                var ptr = CppMethods.ArrayCopy(len, inputLinear);
+                if (ptr != IntPtr.Zero)
+                {
+                 
+
+                    // Copy data from unmanaged memory to managed memory
+                    Marshal.Copy(ptr, doubles, 0, len);
+
+                    // Free unmanaged memory when you're done with it
+                }
                 Marshal.FreeHGlobal(ptr);
                 var reshaped = doubles.ReshapeByNinRow(bWImage.Width);
                 Matrix2D resMatrix = new Matrix2D(reshaped);

@@ -36,9 +36,9 @@ namespace PZWrapper.Links
         public static extern void Inverse256(int len, double[] doubles);
 
         [DllImport(dllPath)]
-        public static extern IntPtr SquareBlur(int width, int height, int radius, double[] doubles);
+        public static extern IntPtr ArrayCopy(int len, double[] doubles);
 
         [DllImport(dllPath)]
-        public static extern IntPtr FifeDoubles();
+        public static extern IntPtr ReturnDoubleArray(int size);
     }
 }

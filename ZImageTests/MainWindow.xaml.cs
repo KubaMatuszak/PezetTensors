@@ -22,6 +22,7 @@ using ZImageTests.Process;
 using ZImageTests.Visualisation;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
+using PZWrapper.Links;
 
 namespace ZImageTests
 {
@@ -37,26 +38,36 @@ namespace ZImageTests
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var ptr = PZWrapper.Links.CppMethods.FifeDoubles();
-            double[] resVals = new double[5];
-            Marshal.Copy(ptr, resVals, 0, 5); 
-            //Marshal.FreeHGlobal(ptr);
+
+            int size = 5;
+            IntPtr ptr = CppMethods.ReturnDoubleArray(size);
+            double[] managedArray = new double[size];
+            Marshal.Copy(ptr, managedArray, 0, size);
+
+            for (int i = 0; i < size; i++)
+            {
+                
+            }
+
+            // Free unmanaged memory
+            Marshal.FreeHGlobal(ptr);
 
 
-            var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
-            Matrix2D bWImage = new Matrix2D(imagePath);
-            //var bmp = RunProcess(bWImage);
-            ////var matrix = bWImage.ToMatrix2D();
-            ////matrix.Inverse256();
-            ////BWImage res = new BWImage(matrix);
-            ////var bmp = res.ToBitmap();
-            //var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
-            //MyZImage.Show(src3);
-            
-            var t1 = DateTime.Now;
-            BackJobs.RunAndInformDispatched(Dispatcher ,() => TestRun(bWImage), (im) => MyZImage.Show(im));
-            var t2 = DateTime.Now;
-            var diff = (t2 - t1).TotalMilliseconds;
+
+            //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
+            //Matrix2D bWImage = new Matrix2D(imagePath);
+            ////var bmp = RunProcess(bWImage);
+            //////var matrix = bWImage.ToMatrix2D();
+            //////matrix.Inverse256();
+            //////BWImage res = new BWImage(matrix);
+            //////var bmp = res.ToBitmap();
+            ////var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
+            ////MyZImage.Show(src3);
+
+            //var t1 = DateTime.Now;
+            //BackJobs.RunAndInformDispatched(Dispatcher ,() => TestRun(bWImage), (im) => MyZImage.Show(im));
+            //var t2 = DateTime.Now;
+            //var diff = (t2 - t1).TotalMilliseconds;
         }
 
         private Matrix2D TestRun(Matrix2D bWImage)

@@ -75,8 +75,16 @@ double* ArrayCopy(int len, double* doubles)
     double* myDynamic2DArray = new double[len];
 
 
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; i++) {
         myDynamic2DArray[i] = doubles[i];
     }
     return myDynamic2DArray;
+}
+
+double* ReturnDoubleArray(int size) {
+    double* arr = new double[size];
+    for (int i = 0; i < size; ++i) {
+        arr[i] = i * 1.5; // Fill the array with some example data
+    }
+    return arr;
 }
