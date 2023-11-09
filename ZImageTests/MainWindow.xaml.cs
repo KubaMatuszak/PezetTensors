@@ -41,6 +41,24 @@ namespace ZImageTests
         {
             var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
             Matrix2D bWImage = new Matrix2D(imagePath);
+            //var bmp = RunProcess(bWImage);
+            ////var matrix = bWImage.ToMatrix2D();
+            ////matrix.Inverse256();
+            ////BWImage res = new BWImage(matrix);
+            ////var bmp = res.ToBitmap();
+            //var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
+            //MyZImage.Show(src3);
+
+            var t1 = DateTime.Now;
+            BackJobs.RunAndInformDispatched(Dispatcher ,() => TestRun(bWImage), (im) => MyZImage.Show(im));
+            var t2 = DateTime.Now;
+            var diff = (t2 - t1).TotalMilliseconds;
+        }
+
+        private static void SimpleTestMethod()
+        {
+            var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
+            Matrix2D bWImage = new Matrix2D(imagePath);
 
             double[] inputDoubles = bWImage.Data.Linearize();
             int len = inputDoubles.Length;
@@ -49,23 +67,6 @@ namespace ZImageTests
             Marshal.Copy(ptr, outputDoubles, 0, len);
             // Free unmanaged memory
             Marshal.FreeHGlobal(ptr);
-
-
-
-            //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
-            //Matrix2D bWImage = new Matrix2D(imagePath);
-            ////var bmp = RunProcess(bWImage);
-            //////var matrix = bWImage.ToMatrix2D();
-            //////matrix.Inverse256();
-            //////BWImage res = new BWImage(matrix);
-            //////var bmp = res.ToBitmap();
-            ////var src3 = PZControlsWpf.ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp.ToBitmap());
-            ////MyZImage.Show(src3);
-
-            //var t1 = DateTime.Now;
-            //BackJobs.RunAndInformDispatched(Dispatcher ,() => TestRun(bWImage), (im) => MyZImage.Show(im));
-            //var t2 = DateTime.Now;
-            //var diff = (t2 - t1).TotalMilliseconds;
         }
 
         private Matrix2D TestRun(Matrix2D bWImage)

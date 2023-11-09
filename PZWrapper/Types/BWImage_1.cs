@@ -11,12 +11,12 @@ namespace PZWrapper.Types
 {
     public class Matrix2D : IStrandable
     {
-        public int NRows = 0;
-        public int NCols = 0;
+        public int NRows { get; set; } = 0;
+        public int NCols { get; set; } = 0;
         public double[,] Data = new double[0,0];
 
-        public int Height { get; set; }
-        public int Width { get; set; }
+        //public int Height { get; set; }
+        //public int Width { get; set; }
 
         public int NoOfDims => 2;
 
@@ -29,9 +29,9 @@ namespace PZWrapper.Types
         {
             if (filename == null) throw new ArgumentNullException("filename");
             Bitmap bitmap = new Bitmap(filename);
-            Width = bitmap.Width;
-            Height = bitmap.Height;
-            Data = new double[Height, Width];
+            NCols = bitmap.Width;
+            NRows = bitmap.Height;
+            Data = new double[NRows, NCols];
             this.ForEach((r, c) => Data[r, c] = bitmap.GetPixel(c, r).ToGrayDouble());
         }
 
@@ -43,12 +43,13 @@ namespace PZWrapper.Types
             Data = new double[NRows, NCols];
         }
 
-        public Matrix2D(Matrix2D matrix)
-        {
-            Data = matrix.Data;
-            Height = matrix.NRows;
-            Width = matrix.NCols;
-        }
+        //public Matrix2D(Matrix2D matrix)
+        //{
+        //    Data = matrix.Data;
+        //    NRows = matrix.NRows;
+        //    NCols = matrix.NCols;
+        //}
+
         public Matrix2D(double[,] values) 
         {
             NRows = values.GetLength(0);

@@ -18,7 +18,7 @@ namespace PZWrapper.Links
         {
             var multPtr = CppMethods.MatrixMultiply(2, 2, 2, matrixA.Data.Linearize(), matrixA.Data.Linearize());
             var mult = MarshalHelper.GetFromPtr(4, multPtr);
-            var reshaped = mult.ReshapeByNinRow(matrixB.NCols);
+            var reshaped = mult.ReshapeByNColWidth(matrixB.NCols);
             var resMatrix = new Matrix2D(reshaped);
             return resMatrix;
         }
@@ -32,22 +32,30 @@ namespace PZWrapper.Links
             var res = MarshalHelper.TryPtrToArr(() => CppMethods.MatrixMultiply(2, 2, 2, linearA, linearB), linearB.Length, doubles, null);
             if (res == false)
                 return null;
-            var reshaped = doubles.ReshapeByNinRow(linearB.Length);
+            var reshaped = doubles.ReshapeByNColWidth(linearB.Length);
             Matrix2D resMatrix = new Matrix2D(reshaped);
             return resMatrix;
         }
 
 
-        
+        public static Matrix2D ArrayCopy(Matrix2D inputMatrix)
+        {
+            var inputValues = inputMatrix.Data.Linearize();
+            var len = inputValues.Length;
+            double[] outputVals = new double[len];
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.ArrayCopy(len, inputValues), len, outputVals, null);
+            if (res == false)
+                throw new Exception("LoL");
+            var reshaped = outputVals.ReshapeByNColWidth(inputMatrix.NCols);
+            Matrix2D resMatrix = new Matrix2D(reshaped);
+            return resMatrix;
+        }
 
 
-        public static Matrix2D SquareBlur(Matrix2D bWImage, int rad)
+        public static Matrix2D SquareBlur(Matrix2D inputMatrix, int rad)
         {
             try
             {
-
-
-                var inputMatrix = bWImage.ToMatrix2D();
                 var inputLinear = inputMatrix.Data.Linearize();
                 var len = inputLinear.Length;
                 double[] doubles = new double[100];
@@ -62,7 +70,7 @@ namespace PZWrapper.Links
                     // Free unmanaged memory when you're done with it
                 }
                 Marshal.FreeHGlobal(ptr);
-                var reshaped = doubles.ReshapeByNinRow(bWImage.Width);
+                var reshaped = doubles.ReshapeByNColWidth(inputMatrix.NCols);
                 Matrix2D resMatrix = new Matrix2D(reshaped);
                 return resMatrix;
             }

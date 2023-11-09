@@ -5,31 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using ZImageTests.Process.Aggregators;
 using ZImageTests.Process.Simples;
+using ZImageTests.Types.Elementary;
 
 namespace ZImageTests.Process
 {
     public static class StaticPreProcess
     {
-        private static BWLinearCompoundProcess _aggregator;
+        private static BWLinearProcessAggregator _aggregator;
 
 
         /// <summary>
         /// Sample aggregator (Exposure + invert)
         /// </summary>
-        public static BWLinearCompoundProcess SampleAggregator
+        public static BWLinearProcessAggregator SampleAggregator
         {
             get
             {
                 if (_aggregator != null) 
                     return _aggregator;
-                _aggregator = new BWLinearCompoundProcess();
+                _aggregator = new BWLinearProcessAggregator();
                 //ExposureCompensation exposure = new ExposureCompensation();
                 //_aggregator.Append(exposure);
 
                 //InvertProcess invert = new InvertProcess();
                 //_aggregator.Append(invert);
 
-                SquareBlurProcess squareBlurProcess = new SquareBlurProcess();
+                ABwProcess squareBlurProcess = new ArrayCopyProcess();
                 _aggregator.Append(squareBlurProcess);
                 return _aggregator;
             }

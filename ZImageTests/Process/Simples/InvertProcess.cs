@@ -10,14 +10,11 @@ namespace ZImageTests.Process.Simples
     {
         public override string ProcessName => GetType().Name;
 
-        public override ProcessResult<Matrix2D> Process(Matrix2D bWImage)
+        public override ProcessResult<Matrix2D> Process(Matrix2D inputMatrix)
         {
-            var matrix = bWImage.ToMatrix2D();
-            
-            Matrix2D res = new Matrix2D(matrix);
             ProcessResult<Matrix2D> result = new ProcessResult<Matrix2D>();
             result.IsOk = true;
-            result.ResBwIm = res;
+            result.ResBwIm = inputMatrix;
             return result;
         }
     }

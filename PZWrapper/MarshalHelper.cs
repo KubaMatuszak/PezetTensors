@@ -15,11 +15,11 @@ namespace PZWrapper
 
 
 
-        public static bool TryPtrToArr(Func<IntPtr> func, int len, int[] values, Exception exception) 
-            => TryRun(func, (ptr) => { Marshal.Copy(ptr, values, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
+        public static bool TryPtrToArr(Func<IntPtr> func, int len, int[] outValues, Exception exception) 
+            => TryRun(func, (ptr) => { Marshal.Copy(ptr, outValues, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
 
-        public static bool TryPtrToArr(Func<IntPtr> func, int len, double[] values, Exception exception)
-            => TryRun(func, (ptr) => { Marshal.Copy(ptr, values, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
+        public static bool TryPtrToArr(Func<IntPtr> func, int len, double[] outValues, Exception exception)
+            => TryRun(func, (ptr) => { Marshal.Copy(ptr, outValues, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
 
 
         public static bool TryRun(Func<IntPtr> func, Action<IntPtr> action, Exception exc)

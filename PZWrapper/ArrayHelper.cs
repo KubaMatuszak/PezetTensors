@@ -8,7 +8,7 @@ namespace PZWrapper
 {
     public static class ArrayHelper
     {
-        public static double[,] ReshapeByNinRow(this double[] data, int nCols) 
+        public static double[,] ReshapeByNColWidth(this double[] data, int nCols) 
         {
             var nRows = data.Length / nCols;
             if(data.Length % nCols != 0)
