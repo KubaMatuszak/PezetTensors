@@ -23,6 +23,7 @@ using ZImageTests.Visualisation;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
 using PZWrapper.Links;
+using PZWrapper;
 
 namespace ZImageTests
 {
@@ -38,17 +39,14 @@ namespace ZImageTests
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
+            Matrix2D bWImage = new Matrix2D(imagePath);
 
-            int size = 5;
-            IntPtr ptr = CppMethods.ReturnDoubleArray(size);
-            double[] managedArray = new double[size];
-            Marshal.Copy(ptr, managedArray, 0, size);
-
-            for (int i = 0; i < size; i++)
-            {
-                
-            }
-
+            double[] inputDoubles = bWImage.Data.Linearize();
+            int len = inputDoubles.Length;
+            IntPtr ptr = CppMethods.ArrayCopy(len, inputDoubles);
+            double[] outputDoubles = new double[len];
+            Marshal.Copy(ptr, outputDoubles, 0, len);
             // Free unmanaged memory
             Marshal.FreeHGlobal(ptr);
 

@@ -37,6 +37,10 @@ namespace PZWrapper.Links
             return resMatrix;
         }
 
+
+        
+
+
         public static Matrix2D SquareBlur(Matrix2D bWImage, int rad)
         {
             try
