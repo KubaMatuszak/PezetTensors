@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Blur.h" />
     <ClInclude Include="Expr.h" />
     <ClInclude Include="ExprAdapter.h" />
     <ClInclude Include="framework.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="StackCell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Blur.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Expr.cpp" />
     <ClCompile Include="ExprAdapter.cpp" />

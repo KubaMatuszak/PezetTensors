@@ -39,6 +39,9 @@ namespace PZWrapper.Links
         public static extern IntPtr ArrayCopy(int len, double[] doubles);
 
         [DllImport(dllPath)]
+        public static extern IntPtr SampleBlur(int len, double[] doubles);
+
+        [DllImport(dllPath)]
         public static extern IntPtr ReturnDoubleArray(int size);
     }
 }

@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Expressions">
       <UniqueIdentifier>{619e1ce9-c9ce-40b1-b6ab-b38adccb9edd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Convols">
+      <UniqueIdentifier>{d1338d14-7881-44d2-9c92-25e0c844d998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Convols">
+      <UniqueIdentifier>{b1c1d4ac-0b9f-4a78-8882-1ebb92bb6f06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -45,6 +51,9 @@
     <ClInclude Include="StackCell.h">
       <Filter>Header Files\Expressions</Filter>
     </ClInclude>
+    <ClInclude Include="Blur.h">
+      <Filter>Header Files\Convols</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -67,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="StackCell.cpp">
       <Filter>Source Files\Expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="Blur.cpp">
+      <Filter>Source Files\Convols</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

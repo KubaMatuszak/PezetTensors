@@ -38,12 +38,12 @@ namespace PZWrapper.Links
         }
 
 
-        public static Matrix2D ArrayCopy(Matrix2D inputMatrix)
+        public static Matrix2D SampleBlur(Matrix2D inputMatrix)
         {
             var inputValues = inputMatrix.Data.Linearize();
             var len = inputValues.Length;
             double[] outputVals = new double[len];
-            var res = MarshalHelper.TryPtrToArr(() => CppMethods.ArrayCopy(len, inputValues), len, outputVals, null);
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.SampleBlur(len, inputValues), len, outputVals, null);
             if (res == false)
                 throw new Exception("LoL");
             var reshaped = outputVals.ReshapeByNColWidth(inputMatrix.NCols);
