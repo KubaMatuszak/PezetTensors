@@ -81,4 +81,7 @@
       <Filter>Source Files\Convols</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
+  </ItemGroup>
 </Project>
