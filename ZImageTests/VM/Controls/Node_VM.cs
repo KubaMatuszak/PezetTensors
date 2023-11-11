@@ -10,15 +10,16 @@ namespace ZImageTests.VM.Controls
 {
     public class Node_VM : ObservableObject
     {
-        private AProcess<Matrix2D> _process;
-
-        public Node_VM(AProcess<Matrix2D> proc)
+        private ANode<Matrix2D> _process;
+        private bool _isBypassed;
+        public Node_VM(ANode<Matrix2D> proc)
         {
             Proc = proc;
         }
 
-        public string ProcName => "sample name";// _process?.ProcessName;
+        public string ProcName => _process != null ? _process.ProcessName : "<not specified>";// _process?.ProcessName;
 
-        public AProcess<Matrix2D> Proc { get => _process; set => SetProperty(ref _process, value); }
+        public ANode<Matrix2D> Proc { get => _process; set => SetProperty(ref _process, value); }
+        public bool IsBypassed { get => _process.IsBypassed; set =>  SetProperty(ref _process.IsBypassed, value); }
     }
 }

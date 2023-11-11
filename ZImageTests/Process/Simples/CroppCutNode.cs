@@ -6,10 +6,10 @@ using System;
 
 namespace ZImageTests.Process.Simples
 {
-    public class CroppCutProcess : AProcess<Matrix2D>
+    public class CroppCutNode : ANode<Matrix2D>
     {
-        public override string ProcessName => GetType().Name;
-        public CroppCutProcess() { }
+        //public override string ProcessName => GetType().Name;
+        public CroppCutNode() { IsBypassed = false; }
 
 
 

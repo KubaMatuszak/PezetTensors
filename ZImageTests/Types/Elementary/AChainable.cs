@@ -23,8 +23,9 @@ namespace ZImageTests.Types.Elementary
 
 
 
-    public abstract class AProcess<Tin> : AChainable<AProcess<Tin>>
+    public abstract class ANode<Tin> : AChainable<ANode<Tin>>
     {
+        public bool IsBypassed = false;
         public abstract ProcessResult<Tin> Process(Tin tIn);
         public ProcessResult<Tin> ProcessAll(Tin bWImage)
         {
@@ -33,7 +34,7 @@ namespace ZImageTests.Types.Elementary
                 res = this.Process(res.ResBwIm);
             return res;
         }
-        public abstract string ProcessName { get; }
+        public string ProcessName => GetType().Name;
     }
 
 

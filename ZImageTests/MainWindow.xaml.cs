@@ -35,7 +35,7 @@ namespace ZImageTests
         public MainWindow()
         {
             InitializeComponent();
-            MyProcContainer.DataContext = StaticPreProcess.SampleAggregator;
+            MyProcContainer.DataContext = new VM.Controls.ProcessAggregator_VM(StaticPreProcess.SampleAggregator);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -78,8 +78,9 @@ namespace ZImageTests
             return res.ResBwIm;
         }
 
-
-
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MyProcContainer.DataContext = new VM.Controls.ProcessAggregator_VM(StaticPreProcess.SampleAggregator);
+        }
     }
 }

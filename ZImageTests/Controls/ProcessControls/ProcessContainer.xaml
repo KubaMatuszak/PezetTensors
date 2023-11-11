@@ -5,12 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZImageTests.Controls.ProcessControls"
              mc:Ignorable="d" Background="Bisque"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" x:Name="MyProcessContainer">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding}"/>
+        <TextBlock Text="{Binding AggregatorName, ElementName=MyProcessContainer}"/>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding AllProcesses}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Red">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsBypassed}" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsBypassed}" Value="False">
+                                        <Setter Property="Background" Value="AliceBlue"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid Height="30">
+                            <TextBlock Text="{Binding ProcName}"/>
+                        
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </UserControl>

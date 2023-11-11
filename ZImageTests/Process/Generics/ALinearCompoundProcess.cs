@@ -9,8 +9,8 @@ namespace ZImageTests.Process.Generics
         public string Name = "Sample compound process name";
         
         protected ALinearCompoundProcess() { }
-        public List<AProcess<TMatrix>> ProcessList = new List<AProcess<TMatrix>>();
-        public void Append(AProcess<TMatrix> process)
+        public List<ANode<TMatrix>> ProcessList = new List<ANode<TMatrix>>();
+        public void Append(ANode<TMatrix> process)
         {
             ProcessList.Add(process);
             var currChild = process.Next;
@@ -62,8 +62,8 @@ namespace ZImageTests.Process.Generics
             //first.Next
         }
         protected ASomeProcess() { }
-        public List<AProcess<Tin>> ProcessList = new List<AProcess<Tin>>();
-        public void Append(AProcess<Tin> process)
+        public List<ANode<Tin>> ProcessList = new List<ANode<Tin>>();
+        public void Append(ANode<Tin> process)
         {
             ProcessList.Add(process);
             var currChild = process.Next;

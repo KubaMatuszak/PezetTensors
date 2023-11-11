@@ -18,11 +18,13 @@ namespace ZImageTests.VM.Controls
 			foreach(var proc in processAggregator.ProcessList)
 			{
 				Node_VM process_VM = new Node_VM(proc);
+				_processes.Add(process_VM);
+
 			}
         }
 
-		private ObservableCollection<Node_VM> _processes;
-		private string _aggregateName;
+		private ObservableCollection<Node_VM> _processes = new ObservableCollection<Node_VM>();
+		private string _aggregateName = "sample name";
 
 
 		public string AggregateName { get => _aggregateName; set => SetProperty(ref _aggregateName, value); }

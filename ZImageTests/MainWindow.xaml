@@ -7,6 +7,7 @@
         xmlns:ctrls="clr-namespace:ZImageTests.Controls"
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -27,7 +28,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Example aggregator"/>
-                <prcCtrls:ProcessContainer Grid.Row="1" x:Name="MyProcContainer" AggregatorName="{Binding}" >
+                <prcCtrls:ProcessContainer Grid.Row="1" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
                     
                 </prcCtrls:ProcessContainer>
             </Grid>

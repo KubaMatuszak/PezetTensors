@@ -31,8 +31,8 @@ namespace ZImageTests.Process
                 //InvertProcess invert = new InvertProcess();
                 //_aggregator.Append(invert);
 
-                AProcess<Matrix2D> sampleBlur = new CroppCutProcess();
-                _aggregator.Append(sampleBlur);
+                _aggregator.Append(new CroppCutNode());
+                _aggregator.Append(new SampleBlurNode());
                 return _aggregator;
             }
         }
