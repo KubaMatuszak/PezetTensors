@@ -6,7 +6,7 @@ using System;
 
 namespace ZImageTests.Process.Simples
 {
-    public class CroppCutProcess : ABwProcess
+    public class CroppCutProcess : AProcess<Matrix2D>
     {
         public override string ProcessName => GetType().Name;
         public CroppCutProcess() { }

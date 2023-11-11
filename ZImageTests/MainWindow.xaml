@@ -27,7 +27,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Example aggregator"/>
-                <prcCtrls:ProcessContainer x:Name="MyProcContainer" AggregatorName="{Binding}" >
+                <prcCtrls:ProcessContainer Grid.Row="1" x:Name="MyProcContainer" AggregatorName="{Binding}" >
                     
                 </prcCtrls:ProcessContainer>
             </Grid>

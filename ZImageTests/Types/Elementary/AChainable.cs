@@ -37,9 +37,7 @@ namespace ZImageTests.Types.Elementary
     }
 
 
-    public abstract class ABwProcess : AProcess<Matrix2D>
-    {
-    }
+
 
 
 }

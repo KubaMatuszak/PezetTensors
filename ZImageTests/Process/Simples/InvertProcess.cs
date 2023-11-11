@@ -6,7 +6,7 @@ using PZWrapper.Links;
 using PZWrapper.Extensions;
 namespace ZImageTests.Process.Simples
 {
-    public class InvertProcess : ABwProcess
+    public class InvertProcess : AProcess<Matrix2D>
     {
         public override string ProcessName => GetType().Name;
 

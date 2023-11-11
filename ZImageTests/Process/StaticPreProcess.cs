@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PZWrapper.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace ZImageTests.Process
                 //InvertProcess invert = new InvertProcess();
                 //_aggregator.Append(invert);
 
-                ABwProcess sampleBlur = new CroppCutProcess();
+                AProcess<Matrix2D> sampleBlur = new CroppCutProcess();
                 _aggregator.Append(sampleBlur);
                 return _aggregator;
             }

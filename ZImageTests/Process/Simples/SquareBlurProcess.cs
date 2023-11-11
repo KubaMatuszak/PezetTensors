@@ -11,7 +11,7 @@ using PZWrapper.Links;
 
 namespace ZImageTests.Process.Simples
 {
-    public class SquareBlurProcess : ABwProcess
+    public class SquareBlurProcess : AProcess<Matrix2D>
     {
         public override string ProcessName => GetType().Name;
 
