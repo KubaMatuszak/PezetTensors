@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZImageTests"
         xmlns:ctrls="clr-namespace:ZImageTests.Controls"
+        xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -19,7 +20,18 @@
         </Grid.ColumnDefinitions>
         <ctrls:ZImage x:Name="MyZImage" Margin="30"/>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
-        <Border Grid.Column="2" BorderThickness="2" Background="AliceBlue" BorderBrush="LightGray"/>
+        <Border Grid.Column="2" BorderThickness="2" Background="AliceBlue" BorderBrush="LightGray">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Example aggregator"/>
+                <prcCtrls:ProcessContainer x:Name="MyProcContainer" AggregatorName="{Binding}" >
+                    
+                </prcCtrls:ProcessContainer>
+            </Grid>
+        </Border>
         <Button Grid.Row="1" Width="100" Content="Test" Click="Button_Click" />
         
     </Grid>

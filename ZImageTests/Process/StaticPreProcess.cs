@@ -30,7 +30,7 @@ namespace ZImageTests.Process
                 //InvertProcess invert = new InvertProcess();
                 //_aggregator.Append(invert);
 
-                ABwProcess sampleBlur = new SampleBlurProcess();
+                ABwProcess sampleBlur = new CroppCutProcess();
                 _aggregator.Append(sampleBlur);
                 return _aggregator;
             }

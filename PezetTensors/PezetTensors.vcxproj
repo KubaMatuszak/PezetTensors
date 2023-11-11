@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Blur.h" />
+    <ClInclude Include="Cropping.h" />
+    <ClInclude Include="Declarations.h" />
     <ClInclude Include="Expr.h" />
     <ClInclude Include="ExprAdapter.h" />
     <ClInclude Include="framework.h" />
@@ -152,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blur.cpp" />
+    <ClCompile Include="Cropping.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Expr.cpp" />
     <ClCompile Include="ExprAdapter.cpp" />

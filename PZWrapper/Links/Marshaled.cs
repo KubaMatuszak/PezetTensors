@@ -51,6 +51,28 @@ namespace PZWrapper.Links
             return resMatrix;
         }
 
+        public static Matrix2D CroppCutMargin(Matrix2D inM, int left, int top, int right, int bottom)
+        {
+            var inputValues = inM.Data.Linearize();
+            var inLen = inputValues.Length;
+
+            var inW = inM.NCols;
+            var inH = inM.NRows;
+
+            var outW = inW - left - right;
+            var outH = inH - top - bottom;
+            var outLen = outW * outH;
+
+            double[] outputVals = new double[outLen];
+
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.CroppCutMargin(inM.NCols, inM.NRows, inputValues, left, top, right, bottom), outLen, outputVals, null);
+            if (res == false)
+                throw new Exception("LoL");
+            var reshaped = outputVals.ReshapeByNColWidth(outW);
+            Matrix2D resMatrix = new Matrix2D(reshaped);
+            return resMatrix;
+        }
+
 
         public static Matrix2D SquareBlur(Matrix2D inputMatrix, int rad)
         {

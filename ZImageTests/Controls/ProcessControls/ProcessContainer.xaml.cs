@@ -24,5 +24,19 @@ namespace ZImageTests.Controls.ProcessControls
         {
             InitializeComponent();
         }
+
+
+
+        public string AggregatorName
+        {
+            get { return (string)GetValue(AggregatorNameProperty); }
+            set { SetValue(AggregatorNameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AggregatorName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AggregatorNameProperty =
+            DependencyProperty.Register("AggregatorName", typeof(string), typeof(ProcessContainer), new PropertyMetadata(default));
+
+
     }
 }

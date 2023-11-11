@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Convols">
       <UniqueIdentifier>{b1c1d4ac-0b9f-4a78-8882-1ebb92bb6f06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Cropping">
+      <UniqueIdentifier>{66c2def7-4fbb-463f-9644-2d283dd8b5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Cropping">
+      <UniqueIdentifier>{2feb1358-c3df-4aa6-8c83-63ee7015ca28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,6 +60,12 @@
     <ClInclude Include="Blur.h">
       <Filter>Header Files\Convols</Filter>
     </ClInclude>
+    <ClInclude Include="Cropping.h">
+      <Filter>Header Files\Cropping</Filter>
+    </ClInclude>
+    <ClInclude Include="Declarations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -79,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Blur.cpp">
       <Filter>Source Files\Convols</Filter>
+    </ClCompile>
+    <ClCompile Include="Cropping.cpp">
+      <Filter>Source Files\Cropping</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

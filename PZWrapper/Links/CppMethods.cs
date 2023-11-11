@@ -43,5 +43,8 @@ namespace PZWrapper.Links
 
         [DllImport(dllPath)]
         public static extern IntPtr ReturnDoubleArray(int size);
+
+        [DllImport(dllPath)]
+        public static extern IntPtr CroppCutMargin(int width, int height, double[] inVals, int left, int top, int right, int bottom);
     }
 }

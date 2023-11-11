@@ -35,11 +35,13 @@ namespace ZImageTests
         public MainWindow()
         {
             InitializeComponent();
+            MyProcContainer.DataContext = StaticPreProcess.SampleAggregator;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
+            //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\TinyTest.jpg";
             Matrix2D bWImage = new Matrix2D(imagePath);
             //var bmp = RunProcess(bWImage);
             ////var matrix = bWImage.ToMatrix2D();
