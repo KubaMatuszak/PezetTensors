@@ -30,7 +30,6 @@ namespace ZImageTests.Controls
         }
 
         public void Show(Matrix2D image) { ZImageDisp.Source = AutoConverter.ConvChain.Convert<Matrix2D, ImageSource>(image); }
-        public void Show(Bitmap bitmap) { ZImageDisp.Source = AutoConverter.ConvChain.Convert<Bitmap, ImageSource>(bitmap); }
         public void Show(ImageSource imageSource) { ZImageDisp.Source = imageSource; }
 
     }
