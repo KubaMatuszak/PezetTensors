@@ -35,20 +35,12 @@ namespace PZWrapper.Types
             this.ForEach((r, c) => Data[r, c] = bitmap.GetPixel(c, r).ToGrayDouble());
         }
 
-
         public Matrix2D(int width, int height)
         {
             NRows = height;
             NCols = width;
             Data = new double[NRows, NCols];
         }
-
-        //public Matrix2D(Matrix2D matrix)
-        //{
-        //    Data = matrix.Data;
-        //    NRows = matrix.NRows;
-        //    NCols = matrix.NCols;
-        //}
 
         public Matrix2D(double[,] values) 
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZImageTests.Types.Elementary;
+using ZImageTests.VM.Basic;
 
 namespace ZImageTests.VM.Controls
 {

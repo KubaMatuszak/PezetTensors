@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZImageTests.Process.Aggregators;
 using ZImageTests.Types.Elementary;
+using ZImageTests.VM.Basic;
 
 namespace ZImageTests.VM.Controls
 {
