@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using PZWrapper.Helpers;
 using PZWrapper.Links;
 
 namespace PZWrapper.Types

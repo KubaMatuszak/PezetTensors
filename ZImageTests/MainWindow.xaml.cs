@@ -23,7 +23,7 @@ using ZImageTests.Visualisation;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
 using PZWrapper.Links;
-using PZWrapper;
+using PZWrapper.Helpers;
 
 namespace ZImageTests
 {

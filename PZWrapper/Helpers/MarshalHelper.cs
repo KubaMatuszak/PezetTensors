@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PZWrapper
+namespace PZWrapper.Helpers
 {
     public class MarshalHelper
     {
@@ -15,27 +15,27 @@ namespace PZWrapper
 
 
 
-        public static bool TryPtrToArr(Func<IntPtr> func, int len, int[] outValues, Exception exception) 
+        public static bool TryPtrToArr(Func<IntPtr> func, int len, int[] outValues, Exception exception)
             => TryRun(func, (ptr) => { Marshal.Copy(ptr, outValues, 0, len); Marshal.FreeHGlobal(ptr); }, exception);
 
         public static bool TryPtrToArr(Func<IntPtr> func, int len, double[] outValues, Exception exception)
-            => TryRun(func, 
-                      (ptr) => 
-                          { 
-                              Marshal.Copy(ptr, outValues, 0, len); 
-                              Marshal.FreeHGlobal(ptr); 
+            => TryRun(func,
+                      (ptr) =>
+                          {
+                              Marshal.Copy(ptr, outValues, 0, len);
+                              Marshal.FreeHGlobal(ptr);
                           }, exception);
 
 
         public static bool TryRun(Func<IntPtr> func, Action<IntPtr> action, Exception exc)
         {
-            if(func == null || action == null) return false;
+            if (func == null || action == null) return false;
             try
             {
                 var ptr = func.Invoke();
                 action(ptr);
             }
-            catch(Exception e) { exc = e; }
+            catch (Exception e) { exc = e; }
             return true;
         }
 
@@ -56,8 +56,8 @@ namespace PZWrapper
                 Marshal.FreeHGlobal(mulPtr);
             }
             catch (Exception ex)
-            { 
-                exception = ex; 
+            {
+                exception = ex;
             }
 
             return true;
