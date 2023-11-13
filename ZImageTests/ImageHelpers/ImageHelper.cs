@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using SixLabors.ImageSharp; 
+using SixLabors.ImageSharp.PixelFormats;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ using System.Windows.Interop;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using System.Collections;
 
 namespace PZControlsWpf.ImageHelpers
 {
@@ -16,10 +19,10 @@ namespace PZControlsWpf.ImageHelpers
     {
 
 
-        public static ImageSource ToImageSource(this Bitmap bmp) => ImageHelpers.ImageHelper.ConvertBitmapToImageSource(bmp);
+        public static ImageSource ToImageSource(this Image<L16> bmp) => bmp.ToBitmapImage();
 
         // Function to convert byte array to ImageSource
-        public static byte[] BitmapToByteArray(Bitmap image)
+        public static byte[] BitmapToByteArray(Image<L16> image)
         {
             byte[] imageData = null;
 
@@ -28,7 +31,8 @@ namespace PZControlsWpf.ImageHelpers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     // Save the Bitmap image to the stream as a JPEG format
-                    image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    SixLabors.ImageSharp.Formats.ImageEncoder imageEncoder = new JpegEncoder();
+                    image.Save(stream, imageEncoder);
 
                     // Get the bytes from the stream
                     imageData = stream.ToArray();
@@ -43,23 +47,23 @@ namespace PZControlsWpf.ImageHelpers
             return imageData;
         }
 
-        public static System.Windows.Media.ImageSource ConvertBitmapToImageSource(Bitmap bitmap)
-        {
-            IntPtr hBitmap = bitmap.GetHbitmap();
 
-            try
+        static BitmapImage ToBitmapImage(this Image<L16> image)
+        {
+            
+            using (var stream = new MemoryStream())
             {
-                return Imaging.CreateBitmapSourceFromHBitmap(
-                    hBitmap,
-                    IntPtr.Zero,
-                    Int32Rect.Empty,
-                    BitmapSizeOptions.FromEmptyOptions()
-                );
-            }
-            catch (Exception ex) { return null; }
-            finally
-            {
-                NativeMethods.DeleteObject(hBitmap);
+                // Save the ImageSharp image to a stream
+                image.SaveAsBmp(stream);
+
+                // Create a new BitmapImage and set its stream source
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = new MemoryStream(stream.ToArray());
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+
+                return bitmapImage;
             }
         }
 
