@@ -1,29 +1,3 @@
 TODO: 
-install SkiaSharp, then:
 
-
-
-string filename = "path/to/your/image.png";
-
-using (SKBitmap skBitmap = SKBitmap.Decode(filename))
-{
-    int width = skBitmap.Width;
-    int height = skBitmap.Height;
-
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            SKColor pixelColor = skBitmap.GetPixel(x, y);
-
-            // Access individual components (R, G, B, A) of the pixel color
-            byte red = pixelColor.Red;
-            byte green = pixelColor.Green;
-            byte blue = pixelColor.Blue;
-            byte alpha = pixelColor.Alpha;
-
-            // Process or manipulate the pixel data as needed
-            Console.WriteLine($"Pixel at ({x}, {y}): R={red}, G={green}, B={blue}, A={alpha}");
-        }
-    }
-}
+try cpp windows project.
