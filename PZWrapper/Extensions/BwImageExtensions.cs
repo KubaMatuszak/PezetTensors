@@ -1,5 +1,4 @@
 ﻿using PZWrapper.Types;
-
 namespace PZWrapper.Extensions
 {
     public static class BwImageExtensions
@@ -49,25 +48,7 @@ namespace PZWrapper.Extensions
             return image;
         }
 
-        //static ImageSource ConvertToImageSource(Image<Rgba32> image)
-        //{
-        //    using (var memoryStream = new System.IO.MemoryStream())
-        //    {
-        //        // Save the ImageSharp image to a MemoryStream in a format supported by BitmapImage
-        //        image.SaveAsBmp(memoryStream);
 
-        //        // Create a BitmapImage and set its source to the MemoryStream
-        //        BitmapImage bitmapImage = new BitmapImage();
-        //        bitmapImage.BeginInit();
-        //        bitmapImage.StreamSource = new System.IO.MemoryStream(memoryStream.ToArray());
-        //        bitmapImage.EndInit();
-
-        //        // Freeze the BitmapImage to make it usable on a different thread (if needed)
-        //        bitmapImage.Freeze();
-
-        //        return bitmapImage;
-        //    }
-        //}
 
         public static Matrix2D ForEachPixChanClone(this Matrix2D bwim, Func<double, double> func)
         {
