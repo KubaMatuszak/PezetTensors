@@ -90,8 +90,30 @@ namespace PZWrapper.Links
 
             var minVal = histogram.Min();
             var maxVal = histogram.Max();
+            var reshaped = histogram.ReshapeByNColWidth(inW);
+            var reshapedMatrix = new Matrix2D(reshaped);
+            return reshapedMatrix;
 
-            return null;
+        }
+        
+        public static Matrix2D Get2DHistogram(Matrix2D inM)
+        {
+            var inputValues = inM.Data.Linearize();
+            var inW = inM.NCols;
+            var inH = inM.NRows;
+
+            var outLen = inW * 1024;
+
+
+            int[] histogram = new int[outLen];
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.Get2DHistogram(inW, inH, inputValues), outLen, histogram, null);
+            if (res == false) throw new Exception("LoLo");
+
+            var minVal = histogram.Min();
+            var maxVal = histogram.Max();
+            var reshaped = histogram.ReshapeByNColWidth(inW);
+            var reshapedMatrix = new Matrix2D(reshaped);
+            return reshapedMatrix;
 
         }
 

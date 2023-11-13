@@ -10,7 +10,7 @@ double* SampleBlur(int len, double* inValues)
 
     for (int i = 0; i < len; i++)
     {
-        outValues[i] = 0.5 * inValues[i];
+        outValues[i] = inValues[i];
     }
     return outValues;
 }

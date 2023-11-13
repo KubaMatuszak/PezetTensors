@@ -19,15 +19,29 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition MinWidth="100" MaxWidth="500"/>
         </Grid.ColumnDefinitions>
-        <ctrls:ZImage x:Name="MyZImage" Margin="30"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Load image.." Click="Button_Click_1"/>
+            <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True"/>
+            <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30"/>
+        </Grid>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
         <Grid x:Name="RightPane" Grid.Column="2" Background="AliceBlue">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <prcCtrls:ProcessContainer Grid.Row="1" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
+                <ctrls:ZImage Grid.Row="1" x:Name="MyHistogram" Margin="30"/>
+                <prcCtrls:ProcessContainer Grid.Row="2" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
                     
                 </prcCtrls:ProcessContainer>
             </Grid>

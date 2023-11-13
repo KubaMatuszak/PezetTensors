@@ -37,6 +37,12 @@
     <Filter Include="Header Files\Analysis">
       <UniqueIdentifier>{0e37b71a-35ed-4c40-89d8-ca0b2d615123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MathSimple">
+      <UniqueIdentifier>{ef03bacd-6584-4b4e-9e73-a6b40795c426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MathSimple">
+      <UniqueIdentifier>{805e3d7a-b7a2-4931-bf52-a8e4a12ff95d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -75,6 +81,9 @@
     <ClInclude Include="Histogram.h">
       <Filter>Header Files\Analysis</Filter>
     </ClInclude>
+    <ClInclude Include="PZMath.h">
+      <Filter>Header Files\MathSimple</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -106,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Histogram.cpp">
       <Filter>Source Files\Analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="PZMath.cpp">
+      <Filter>Source Files\MathSimple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -92,6 +92,22 @@ namespace PZWrapper.Types
             Data = values; 
         }
 
+        public Matrix2D(int[,] values)
+        {
+            NRows = values.GetLength(0);
+            NCols = values.GetLength(1);
+            Data = new double[NRows, NCols];
+            for (int r = 0; r < NRows; r++)
+            {
+                for(int c= 0; c < NCols; c++)
+                {
+                    Console.WriteLine($"row = {r}, row = {c}");
+                    Data[r, c] = values[r, c];
+                }
+            }
+            
+        }
+
         public int[] Strand => new int[] { NRows, NCols };
 
     }

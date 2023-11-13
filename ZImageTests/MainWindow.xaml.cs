@@ -31,6 +31,7 @@ using SixLabors.ImageSharp.ColorSpaces.Conversion;
 using SixLabors.ImageSharp.ColorSpaces;
 using PZWrapper.Extensions;
 using PZControlsWpf.ImageHelpers;
+using Microsoft.Win32;
 
 namespace ZImageTests
 {
@@ -39,6 +40,7 @@ namespace ZImageTests
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string _path;
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +49,10 @@ namespace ZImageTests
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\maxresdefault.jpg";
+            var imagePath = _path;// "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_in_a_field.jpg";
+            if (File.Exists(imagePath) == false)
+                return;
+
             Image colorImage = Image<L16>.Load(imagePath);
             var rgb24 = colorImage as Image<Rgb24>;
             var l16 = rgb24.ToL16();
@@ -63,13 +68,32 @@ namespace ZImageTests
                      (im) => MyZImage.Show(im), asBackground: false);
 
 
-            var res = Marshaled.GetHistogram(matrix2D);
-
+            var histImage = Marshaled.Get2DHistogram(matrix2D);
+            MyHistogram.Show(histImage);
 
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MyProcContainer.DataContext = new VM.Controls.ProcessAggregator_VM(StaticPreProcess.SampleAggregator);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png|All Files|*.*",
+                Title = "Select an Image File",
+                Multiselect = false // Set to true if you want to allow multiple file selection
+            };
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                PathTxtBox.Text = openFileDialog.FileName;
+                _path = openFileDialog.FileName;
+            }
+            
         }
     }
 }

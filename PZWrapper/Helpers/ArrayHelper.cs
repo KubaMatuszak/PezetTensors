@@ -27,6 +27,25 @@ namespace PZWrapper.Helpers
             return doubles;
         }
 
+        public static int[,] ReshapeByNColWidth(this int[] data, int nCols)
+        {
+            var nRows = data.Length / nCols;
+            if (data.Length % nCols != 0)
+                return null;
+            int[,] doubles = new int[nRows, nCols];
+
+            for (int rowNo = 0; rowNo < nRows; ++rowNo)
+            {
+                for (int colNo = 0; colNo < nCols; ++colNo)
+                {
+                    doubles[rowNo, colNo] = data[rowNo * nCols + colNo];
+                }
+            }
+            return doubles;
+        }
+
+
+
         public static double[] Linearize(this double[,] data)
         {
             var nCols = data.GetLength(1);
