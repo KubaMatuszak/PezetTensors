@@ -46,5 +46,7 @@ namespace PZWrapper.Links
 
         [DllImport(dllPath)]
         public static extern IntPtr CroppCutMargin(int width, int height, double[] inVals, int left, int top, int right, int bottom);
+        [DllImport(dllPath)]
+        public static extern IntPtr GetHistogram(int width, int height, double[] intValues);
     }
 }

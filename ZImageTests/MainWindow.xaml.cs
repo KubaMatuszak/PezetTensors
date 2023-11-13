@@ -60,7 +60,12 @@ namespace ZImageTests
                             var res = sdf.ApplyProcess(matrix2D);
                             return res.ResBwIm;
                         },
-                     (im) => MyZImage.Show(im), asBackground: true);
+                     (im) => MyZImage.Show(im), asBackground: false);
+
+
+            var res = Marshaled.GetHistogram(matrix2D);
+
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

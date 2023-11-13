@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Cropping">
       <UniqueIdentifier>{2feb1358-c3df-4aa6-8c83-63ee7015ca28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Analysis">
+      <UniqueIdentifier>{fc1322c4-a5bf-4361-94c2-1fdc9886c627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Analysis">
+      <UniqueIdentifier>{0e37b71a-35ed-4c40-89d8-ca0b2d615123}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -66,6 +72,9 @@
     <ClInclude Include="Declarations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Histogram.h">
+      <Filter>Header Files\Analysis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -94,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="Cropping.cpp">
       <Filter>Source Files\Cropping</Filter>
+    </ClCompile>
+    <ClCompile Include="Histogram.cpp">
+      <Filter>Source Files\Analysis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

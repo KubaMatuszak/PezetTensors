@@ -75,6 +75,27 @@ namespace PZWrapper.Links
         }
 
 
+        public static Matrix2D GetHistogram(Matrix2D inM)
+        {
+            var inputValues = inM.Data.Linearize();
+            var inW = inM.NCols;
+            var inH = inM.NRows;
+
+            var outLen = UInt16.MaxValue;//65535 UInt16.MaxValue;
+
+
+            int[] histogram = new int[outLen];
+            var res = MarshalHelper.TryPtrToArr(() => CppMethods.GetHistogram(inW, inH, inputValues), outLen, histogram, null);
+            if (res == false) throw new Exception("LoLo");
+
+            var minVal = histogram.Min();
+            var maxVal = histogram.Max();
+
+            return null;
+
+        }
+
+
         public static Matrix2D SquareBlur(Matrix2D inputMatrix, int rad)
         {
             try
