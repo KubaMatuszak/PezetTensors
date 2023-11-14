@@ -38,7 +38,7 @@ int* Get2DHistogram(int width, int height, double* inValues)
 
 
     int randMax = 250;
-	int currRand = 4;
+	int currRand = 9;
     for (int c = 0; c < width; c++) 
 	{
 		for (int r = 0; r < height; r++)
@@ -56,16 +56,22 @@ int* Get2DHistogram(int width, int height, double* inValues)
 
 	int coeff = UINT16_MAX / max;
 
-	int kneeX = UINT16_MAX / 4;
-	int kneeY = (3 * UINT16_MAX) / 4;
-	auto kneeCoeff = (float)kneeY / (float)kneeX;
-	auto afterKneeCoeff = (float)(UINT16_MAX - kneeY) / (float)(UINT16_MAX - kneeX);
 	for (int i = 0; i < totalHistLen; i++)
-	{
-		int val = histValues[i] * coeff;
-		val = val < kneeX ? (int)(val * kneeCoeff) : ((int)((val-kneeX) * afterKneeCoeff)) + kneeY;
-		histValues[i] = val;
-	}
+		histValues[i] = histValues[i] * coeff;
+	
+
+
+
+	//int x1 = UINT16_MAX / 4;
+	//int y1 = (UINT16_MAX) / 4;
+	//auto kneeCoeff = (float)y1 / (float)x1;
+	//auto afterKneeCoeff = (float)(UINT16_MAX - y1) / (float)(UINT16_MAX - x1);
+	//for (int i = 0; i < totalHistLen; i++)
+	//{
+	//	int val = histValues[i];
+	//	val = val < x1 ? (int)(val * kneeCoeff) : ((int)((val- y1) * afterKneeCoeff)) + y1;
+	//	histValues[i] = val;
+	//}
 
 
 	return histValues;

@@ -15,9 +15,9 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition MinWidth="200"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition MinWidth="100" MaxWidth="500"/>
+            <ColumnDefinition MinWidth="200" />
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
@@ -36,11 +36,12 @@
         <Grid x:Name="RightPane" Grid.Column="2" Background="AliceBlue">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
                     <RowDefinition />
+                    <RowDefinition Height="10"/>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ctrls:ZImage Grid.Row="1" x:Name="MyHistogram" Margin="30"/>
+                <ctrls:ZImage Grid.Row="0" x:Name="MyHistogram" Margin="30"/>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Gray" ResizeBehavior="PreviousAndNext"/>
                 <prcCtrls:ProcessContainer Grid.Row="2" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
                     
                 </prcCtrls:ProcessContainer>
