@@ -15,22 +15,8 @@
         <ItemsControl Grid.Row="1" ItemsSource="{Binding AllProcesses}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="2" BorderBrush="Red">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsBypassed}" Value="True">
-                                        <Setter Property="Background" Value="DarkGray"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsBypassed}" Value="False">
-                                        <Setter Property="Background" Value="AliceBlue"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <Grid>
-                            <local:NodeItem/>
-                        </Grid>
+                    <Border BorderThickness="2" BorderBrush="Transparent">
+                        <local:NodeItem/>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
