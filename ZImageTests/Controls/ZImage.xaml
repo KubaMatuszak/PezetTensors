@@ -25,7 +25,7 @@
                     </DrawingBrush.Drawing>
                 </DrawingBrush>
             </Border.BorderBrush>
-            <Image x:Name="ZImageDisp"/>
+            <Image x:Name="ZImageDisp" RenderOptions.BitmapScalingMode="Fant"/>
         </Border>
     </Grid>
 </UserControl>
