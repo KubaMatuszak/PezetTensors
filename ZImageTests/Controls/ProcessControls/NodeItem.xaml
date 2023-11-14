@@ -10,7 +10,7 @@
             d:DataContext="{d:DesignInstance Type=vm:Node_VM, IsDesignTimeCreatable=True}"
              >
     <Grid>
-        
+        <CheckBox IsChecked="{Binding IsBypassed}"/>
         <TextBlock Text="{Binding ProcName}" Background="Coral"/>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding ParametersMVs}">
             <ItemsControl.ItemTemplate>
