@@ -49,6 +49,11 @@ namespace ZImageTests
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            BlackWhiteProcess();
+        }
+
+        private void BlackWhiteProcess()
+        {
             var imagePath = _path;// "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_in_a_field.jpg";
             if (File.Exists(imagePath) == false)
                 return;
@@ -60,11 +65,11 @@ namespace ZImageTests
             //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\TinyTest.jpg";
             Matrix2D matrix2D = new Matrix2D(l16);
             BackJobs.RunAndInformDispatched(Dispatcher, () =>
-                        {
-                            var sdf = StaticPreProcess.SampleAggregator;
-                            var res = sdf.ApplyProcess(matrix2D);
-                            return res.ResBwIm;
-                        },
+            {
+                var sdf = StaticPreProcess.SampleAggregator;
+                var res = sdf.ApplyProcess(matrix2D);
+                return res.ResBwIm;
+            },
                      (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: true);
 
 
@@ -73,6 +78,7 @@ namespace ZImageTests
             var histImage = histMatrix.ToBitmap();
             histImage.SaveAsBmp("C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_histo.bmp");
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MyProcContainer.DataContext = new VM.Controls.ProcessAggregator_VM(StaticPreProcess.SampleAggregator);
