@@ -65,12 +65,13 @@ namespace ZImageTests
                             var res = sdf.ApplyProcess(matrix2D);
                             return res.ResBwIm;
                         },
-                     (im) => MyZImage.Show(im), asBackground: false);
+                     (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: false);
 
 
-            var histImage = Marshaled.Get2DHistogram(matrix2D);
-            MyHistogram.Show(histImage);
-
+            var histMatrix = Marshaled.Get2DHistogram(matrix2D);
+            MyHistogram.Show(histMatrix, Stretch.Fill);
+            var histImage = histMatrix.ToBitmap();
+            histImage.SaveAsBmp("C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_histo.bmp");
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -93,7 +94,7 @@ namespace ZImageTests
                 PathTxtBox.Text = openFileDialog.FileName;
                 _path = openFileDialog.FileName;
             }
-            
+            //Stretch="Fill"
         }
     }
 }
