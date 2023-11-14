@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZImageTests.Controls.ProcessControls.ControlSliders"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="70" d:DesignWidth="800"
+             xmlns:vm="clr-namespace:ZImageTests.VM.Controls"
+             d:DataContext="{d:DesignInstance Type=vm:ContParameter_VM, IsDesignTimeCreatable=True}">
     <Grid>
         <Grid>
             <!-- Ruler -->
@@ -20,7 +22,7 @@
 
             <!-- Slider -->
             <Slider x:Name="mySlider" VerticalAlignment="Top" Margin="10,30,10,0"
-                Minimum="0" Maximum="100" TickPlacement="BottomRight" TickFrequency="1"  IsSnapToTickEnabled="True" />
+                Minimum="{Binding Min}" Maximum="{Binding Max}" TickPlacement="BottomRight" TickFrequency="1"  IsSnapToTickEnabled="True" />
         </Grid>
         <!--<Slider x:Name="MySlider"/>-->
     </Grid>

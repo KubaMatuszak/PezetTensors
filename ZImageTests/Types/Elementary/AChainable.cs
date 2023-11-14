@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZImageTests.Process.Generics;
+using ZImageTests.Process.Parameters;
+using ZImageTests.Process.Simples;
+using ZImageTests.VM.Controls;
 
 namespace ZImageTests.Types.Elementary
 {
@@ -35,6 +38,8 @@ namespace ZImageTests.Types.Elementary
             return res;
         }
         public string ProcessName => GetType().Name;
+
+        public abstract List<AGeneralParam> Parameters { get; }
     }
 
 

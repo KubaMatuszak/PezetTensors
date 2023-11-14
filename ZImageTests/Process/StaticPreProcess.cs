@@ -32,7 +32,12 @@ namespace ZImageTests.Process
                 //_aggregator.Append(invert);
 
                 //_aggregator.Append(new CroppCutNode());
+                _aggregator.Append(new CroppCutNode());
+                _aggregator.Append(new ExposureNode());
+                _aggregator.Append(new InvertNode());
                 _aggregator.Append(new SampleBlurNode());
+                _aggregator.Append(new SquareBlurNode());
+                _aggregator.Append(new ToMonochromeNode());
                 return _aggregator;
             }
         }

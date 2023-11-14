@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ZImageTests.Controls.ProcessControls
 {
     /// <summary>
-    /// Interaction logic for ProcessItem.xaml
+    /// Interaction logic for NodeItem.xaml
     /// </summary>
-    public partial class ProcessItem : UserControl
+    public partial class NodeItem : UserControl
     {
-        public ProcessItem()
+        public NodeItem()
         {
             InitializeComponent();
         }
