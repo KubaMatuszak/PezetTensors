@@ -105,14 +105,18 @@ namespace PZWrapper.Links
             var outLen = inW * 1024;
 
 
-            int[] histogram = new int[outLen];
+            double[] histogram = new double[outLen];
+            
             var res = MarshalHelper.TryPtrToArr(() => CppMethods.Get2DHistogram(inW, inH, inputValues), outLen, histogram, null);
             if (res == false) throw new Exception("LoLo");
 
             var minVal = histogram.Min();
             var maxVal = histogram.Max();
             var reshaped = histogram.ReshapeByNColWidth(inW);
+            var t0 = DateTime.Now;
             var reshapedMatrix = new Matrix2D(reshaped);
+            var t1 = DateTime.Now;
+            var diff1 = (t1 - t0).TotalMilliseconds;
             return reshapedMatrix;
 
         }

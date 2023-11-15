@@ -64,14 +64,18 @@ namespace ZImageTests
 
             //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\TinyTest.jpg";
             Matrix2D matrix2D = new Matrix2D(l16);
+            
+
             BackJobs.RunAndInformDispatched(Dispatcher, () =>
             {
                 var sdf = StaticPreProcess.SampleAggregator;
                 var res = sdf.ApplyProcess(matrix2D);
                 return res.ResBwIm;
             },
-                     (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: true);
+                     (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: false);
 
+
+            
 
             var histMatrix = Marshaled.Get2DHistogram(matrix2D);
             MyHistogram.Show(histMatrix, Stretch.Fill);

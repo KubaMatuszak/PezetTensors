@@ -15,16 +15,16 @@ namespace PZWrapper.Helpers
             var nRows = data.Length / nCols;
             if (data.Length % nCols != 0)
                 return null;
-            double[,] doubles = new double[nRows, nCols];
+            double[,] res2DArr = new double[nRows, nCols];
 
             for (int rowNo = 0; rowNo < nRows; ++rowNo)
             {
                 for (int colNo = 0; colNo < nCols; ++colNo)
                 {
-                    doubles[rowNo, colNo] = data[rowNo * nCols + colNo];
+                    res2DArr[rowNo, colNo] = data[rowNo * nCols + colNo];
                 }
             }
-            return doubles;
+            return res2DArr;
         }
 
         public static int[,] ReshapeByNColWidth(this int[] data, int nCols)
@@ -32,30 +32,32 @@ namespace PZWrapper.Helpers
             var nRows = data.Length / nCols;
             if (data.Length % nCols != 0)
                 return null;
-            int[,] doubles = new int[nRows, nCols];
+            int[,] res2DArr = new int[nRows, nCols];
 
             for (int rowNo = 0; rowNo < nRows; ++rowNo)
             {
                 for (int colNo = 0; colNo < nCols; ++colNo)
                 {
-                    doubles[rowNo, colNo] = data[rowNo * nCols + colNo];
+                    res2DArr[rowNo, colNo] = data[rowNo * nCols + colNo];
                 }
             }
-            return doubles;
+            return res2DArr;
         }
 
 
 
-        public static double[] Linearize(this double[,] data)
+        public static double[] Linearize(this double[,] in2DArr)
         {
-            var nCols = data.GetLength(1);
-            var nRows = data.GetLength(0);
+            var nCols = in2DArr.GetLength(1);
+            var nRows = in2DArr.GetLength(0);
             var linear = new double[nCols * nRows];
+            var len = nCols * nRows;
+
             for (int rowNo = 0; rowNo < nRows; ++rowNo)
             {
                 for (int colNo = 0; colNo < nCols; ++colNo)
                 {
-                    var d = data[rowNo, colNo];
+                    var d = in2DArr[rowNo, colNo];
                     linear[rowNo * nCols + colNo] = d;
                 }
             }

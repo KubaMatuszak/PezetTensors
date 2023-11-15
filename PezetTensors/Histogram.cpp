@@ -23,11 +23,11 @@ int* GetHistogram(int width, int height, double* inValues)
 }
 
 
-int* Get2DHistogram(int width, int height, double* inValues)
+double* Get2DHistogram(int width, int height, double* inValues)
 {
 
 	int histHeight = width;
-	int* histValues = new int[width*1024];
+	double* histValues = new double[width*1024];
 	// hist is image of width = width and height = 1024
 	// histogram from column c is placed in column c in 2DHistogram.
 
@@ -68,8 +68,8 @@ int* Get2DHistogram(int width, int height, double* inValues)
 	auto afterKneeCoeff = (float)(UINT16_MAX - y1) / (float)(UINT16_MAX - x1);
 	for (int i = 0; i < totalHistLen; i++)
 	{
-		int val = histValues[i];
-		val = val < x1 ? (int)(val * kneeCoeff) : ((int)((val- y1) * afterKneeCoeff)) + y1;
+		double val = histValues[i];
+		val = val < x1 ? (val * kneeCoeff) : ((int)((val- y1) * afterKneeCoeff)) + y1;
 		histValues[i] = val;
 	}
 
