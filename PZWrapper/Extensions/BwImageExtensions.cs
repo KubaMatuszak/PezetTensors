@@ -25,11 +25,11 @@ namespace PZWrapper.Extensions
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
         public static Image<SixLabors.ImageSharp.PixelFormats.L16> ToBitmap(this Matrix2D bwim)
         {
-            double[,] pixelArray = bwim.Data; // Replace this with your actual method to get the L16 pixel array
+            double[] pixelArray = bwim.Data; // Replace this with your actual method to get the L16 pixel array
 
             // Dimensions of the pixel array
-            int height = pixelArray.GetLength(0);
-            int width = pixelArray.GetLength(1);
+            int height = bwim.NRows;
+            int width = bwim.NCols; ;
 
             // Create a new Image with L16 format
             Image<L16> image = null;
@@ -41,7 +41,7 @@ namespace PZWrapper.Extensions
             {
                 for (int c = 0; c < width; c++)
                 {
-                    L16 pixel = new L16((ushort)pixelArray[r, c]);
+                    L16 pixel = new L16((ushort)pixelArray[r*bwim.NCols + c]);
                     image[c, r] = pixel;
                 }
             }
@@ -53,14 +53,14 @@ namespace PZWrapper.Extensions
         public static Matrix2D ForEachPixChanClone(this Matrix2D bwim, Func<double, double> func)
         {
             Matrix2D cloned = new Matrix2D(bwim.NCols, bwim.NRows);
-            bwim.ForEach((r, c) => cloned.Data[r, c] = func.Invoke(r));
+            bwim.ForEach((r, c) => cloned.Data[r*bwim.NCols + c] = func.Invoke(r));
             return cloned;
         }
 
         public static Matrix2D Clone(this Matrix2D bwim)
         {
             Matrix2D cloned = new Matrix2D(bwim.NCols, bwim.NRows);
-            bwim.ForEach((r, c) => cloned.Data[r, c] = bwim.Data[r, c]);
+            bwim.ForEach((r, c) => cloned.Data[r * bwim.NCols + c] = bwim.Data[r * bwim.NCols + c]);
             return cloned;
         }
 

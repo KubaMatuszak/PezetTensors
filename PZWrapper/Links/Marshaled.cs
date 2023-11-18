@@ -15,46 +15,23 @@ namespace PZWrapper.Links
          * Notation [a,b,c....i] mans 'i' is number of column
          */
 
-        public static Matrix2D MulBy2(this Matrix2D matrixA, Matrix2D matrixB)
-        {
-            var multPtr = CppMethods.MatrixMultiply(2, 2, 2, matrixA.Data.Linearize(), matrixA.Data.Linearize());
-            var mult = MarshalHelper.GetFromPtr(4, multPtr);
-            var reshaped = mult.ReshapeByNColWidth(matrixB.NCols);
-            var resMatrix = new Matrix2D(reshaped);
-            return resMatrix;
-        }
-
-        public static Matrix2D MulBy(this Matrix2D matrixA, Matrix2D matrixB)
-        {
-            var linearB = matrixB.Data.Linearize();
-            var linearA = matrixA.Data.Linearize();
-            var len = linearB.Length;
-            double[] doubles = new double[len];
-            var res = MarshalHelper.TryPtrToArr(() => CppMethods.MatrixMultiply(2, 2, 2, linearA, linearB), linearB.Length, doubles, null);
-            if (res == false)
-                return null;
-            var reshaped = doubles.ReshapeByNColWidth(linearB.Length);
-            Matrix2D resMatrix = new Matrix2D(reshaped);
-            return resMatrix;
-        }
-
 
         public static Matrix2D SampleBlur(Matrix2D inputMatrix)
         {
-            var inputValues = inputMatrix.Data.Linearize();
+            var inputValues = inputMatrix.Data;
             var len = inputValues.Length;
             double[] outputVals = new double[len];
             var res = MarshalHelper.TryPtrToArr(() => CppMethods.SampleBlur(len, inputValues), len, outputVals, null);
             if (res == false)
                 throw new Exception("LoL");
-            var reshaped = outputVals.ReshapeByNColWidth(inputMatrix.NCols);
-            Matrix2D resMatrix = new Matrix2D(reshaped);
+            var reshaped = outputVals;
+            Matrix2D resMatrix = new Matrix2D(inputMatrix.NCols, inputMatrix.NRows, reshaped);
             return resMatrix;
         }
 
         public static Matrix2D CroppCutMargin(Matrix2D inM, int left, int top, int right, int bottom)
         {
-            var inputValues = inM.Data.Linearize();
+            var inputValues = inM.Data;
             var inLen = inputValues.Length;
 
             var inW = inM.NCols;
@@ -70,14 +47,14 @@ namespace PZWrapper.Links
             if (res == false)
                 throw new Exception("LoL");
             var reshaped = outputVals.ReshapeByNColWidth(outW);
-            Matrix2D resMatrix = new Matrix2D(reshaped);
+            Matrix2D resMatrix = new Matrix2D(outH, outW, outputVals);
             return resMatrix;
         }
 
 
         public static Matrix2D GetHistogram(Matrix2D inM)
         {
-            var inputValues = inM.Data.Linearize();
+            var inputValues = inM.Data;
             var inW = inM.NCols;
             var inH = inM.NRows;
 
@@ -98,7 +75,7 @@ namespace PZWrapper.Links
         
         public static Matrix2D Get2DHistogram(Matrix2D inM)
         {
-            var inputValues = inM.Data.Linearize();
+            var inputValues = inM.Data;
             var inW = inM.NCols;
             var inH = inM.NRows;
 
@@ -114,7 +91,7 @@ namespace PZWrapper.Links
             var maxVal = histogram.Max();
             var reshaped = histogram.ReshapeByNColWidth(inW);
             var t0 = DateTime.Now;
-            var reshapedMatrix = new Matrix2D(reshaped);
+            var reshapedMatrix = new Matrix2D(inH, inW, histogram);
             var t1 = DateTime.Now;
             var diff1 = (t1 - t0).TotalMilliseconds;
             return reshapedMatrix;
@@ -126,7 +103,7 @@ namespace PZWrapper.Links
         {
             try
             {
-                var inputLinear = inputMatrix.Data.Linearize();
+                var inputLinear = inputMatrix.Data;
                 var len = inputLinear.Length;
                 double[] doubles = new double[100];
                 var ptr = CppMethods.ArrayCopy(len, inputLinear);
@@ -140,8 +117,8 @@ namespace PZWrapper.Links
                     // Free unmanaged memory when you're done with it
                 }
                 Marshal.FreeHGlobal(ptr);
-                var reshaped = doubles.ReshapeByNColWidth(inputMatrix.NCols);
-                Matrix2D resMatrix = new Matrix2D(reshaped);
+                var reshaped = doubles;
+                Matrix2D resMatrix = new Matrix2D(inputMatrix.NRows, inputMatrix.NCols, reshaped);
                 return resMatrix;
             }
             catch (Exception ex)

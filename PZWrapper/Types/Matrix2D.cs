@@ -17,7 +17,7 @@ namespace PZWrapper.Types
     {
         public int NRows { get; set; } = 0;
         public int NCols { get; set; } = 0;
-        public double[,] Data = new double[0,0];
+        public double[] Data = new double[0];
 
         //public int Height { get; set; }
         //public int Width { get; set; }
@@ -48,8 +48,8 @@ namespace PZWrapper.Types
         {
             NCols = imageL16.Width;
             NRows = imageL16.Height;
-            Data = new double[NRows, NCols];
-            this.ForEach((r, c) => Data[r, c] = imageL16[c, r].PackedValue);
+            Data = new double[NRows * NCols];
+            this.ForEach((r, c) => Data[r*NCols + c] = imageL16[c, r].PackedValue);
         }
 
 
@@ -82,13 +82,13 @@ namespace PZWrapper.Types
         {
             NRows = height;
             NCols = width;
-            Data = new double[NRows, NCols];
+            Data = new double[NRows * NCols];
         }
 
-        public Matrix2D(double[,] values) 
+        public Matrix2D(int height, int width, double[] values) 
         {
-            NRows = values.GetLength(0);
-            NCols = values.GetLength(1);
+            NRows = height;
+            NCols = width;
             Data = values; 
         }
 
@@ -96,13 +96,13 @@ namespace PZWrapper.Types
         {
             NRows = values.GetLength(0);
             NCols = values.GetLength(1);
-            Data = new double[NRows, NCols];
+            Data = new double[NRows * NCols];
             for (int r = 0; r < NRows; r++)
             {
                 for(int c= 0; c < NCols; c++)
                 {
                     Console.WriteLine($"row = {r}, row = {c}");
-                    Data[r, c] = values[r, c];
+                    Data[r * NCols + c] = values[r, c];
                 }
             }
             
