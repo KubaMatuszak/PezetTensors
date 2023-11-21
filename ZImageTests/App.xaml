@@ -4,6 +4,55 @@
              xmlns:local="clr-namespace:ZImageTests"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <Color x:Key="NodeOnBackgroundColor">#CAD</Color>
+            <Color x:Key="NodeOffBackgroundColor">#A8B</Color>
+            <Color x:Key="ImageBackgroundColor">#A8B</Color>
+            
+
+            <SolidColorBrush x:Key="NodeOnBackgroundBrush" Color="{StaticResource NodeOnBackgroundColor}"/>
+            <SolidColorBrush x:Key="NodeOffBackgroundBrush" Color="{StaticResource NodeOffBackgroundColor}"/>
+            <SolidColorBrush x:Key="ImageBackgroundBrush" Color="{StaticResource ImageBackgroundColor}"/>
+
+            
+            
+            <Color x:Key="ImageLightGrayColor">#999</Color>
+            <Color x:Key="ImageDarkGrayColor">#888</Color>
+            <SolidColorBrush x:Key="ImageLightGrayBrush" Color="{StaticResource ImageLightGrayColor}"/>
+            <SolidColorBrush x:Key="ImageDarkGrayBrush" Color="{StaticResource ImageDarkGrayColor}"/>
+            
+            <!-- 
+                Everything in DrawingGroup is considered translated to area of square 0,0,1,1. 
+                This is snapshoted by Viewbox of proper dimensions. 
+                Then this is displayed by Viewport of given dimensions.
+            -->
+            <DrawingBrush
+                    x:Key="ChessboardBrush" 
+                    Viewbox="0,0,1,1" 
+                    Viewport="0,0,20,20" 
+                    ViewportUnits="Absolute" 
+                    Stretch="Fill" TileMode="Tile">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <!-- Dark square -->
+                        <GeometryDrawing Brush="{StaticResource ImageLightGrayBrush}">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,10,10"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource ImageDarkGrayBrush}">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,5,5"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource ImageDarkGrayBrush}">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="5,5,5,5"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

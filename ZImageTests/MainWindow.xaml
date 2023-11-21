@@ -19,7 +19,7 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition MinWidth="200" />
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Background="{StaticResource ChessboardBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
@@ -28,9 +28,9 @@
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Load image.." Click="Button_Click_1"/>
-            <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True"/>
-            <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30"/>
+            <Button Content="Load image.." Click="Button_Click_1" Visibility="Collapsed"/>
+            <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True" Visibility="Collapsed"/>
+            <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Collapsed"/>
         </Grid>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
         <Grid x:Name="RightPane" Grid.Column="2" Background="AliceBlue">
