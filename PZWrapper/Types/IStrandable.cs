@@ -9,6 +9,8 @@ namespace PZWrapper.Types
     public interface IStrandable
     {
         int NoOfDims { get; }
-        int[] Strand { get; }
+        int[] Strand { get; }  
     }
+
+
 }
