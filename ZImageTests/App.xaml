@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ZImageTests"
              xmlns:zoom="clr-namespace:ZImageTests.GUI.Controls.Elementary.Zoom"
+             xmlns:color="clr-namespace:ZImageTests.GUI.Controls.Elementary.Color"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <zoom:PercentConverter x:Key="PercentConverter"/>
-
+            <color:ColorPicker x:Key="ColorPicker"/>
 
             <Color x:Key="NodeOnBackgroundColor">#CAD</Color>
             <Color x:Key="NodeOffBackgroundColor">#A8B</Color>

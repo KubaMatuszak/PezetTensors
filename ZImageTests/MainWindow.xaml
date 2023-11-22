@@ -9,6 +9,7 @@
         xmlns:elementary="clr-namespace:ZImageTests.GUI.Controls.Elementary"    
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         xmlns:mainMenu="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
+         xmlns:color="clr-namespace:ZImageTests.GUI.Controls.Elementary.Color"
         WindowStyle="None"
         mc:Ignorable="d"
         WindowState="{Binding WindowState}"
@@ -59,9 +60,10 @@
                 </Grid.RowDefinitions>
                 <ctrls2:ImagePane Grid.Row="0" x:Name="MyHistogram"/>
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Gray" ResizeBehavior="PreviousAndNext"/>
-                <prcCtrls:ProcessContainer Grid.Row="2" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
+                <!--<prcCtrls:ProcessContainer Grid.Row="2" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
                     
-                </prcCtrls:ProcessContainer>
+                </prcCtrls:ProcessContainer>-->
+                <color:ColorPicker Grid.Row="2"/>
             </Grid>
         </Grid>
         
