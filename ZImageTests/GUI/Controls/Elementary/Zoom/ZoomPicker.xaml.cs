@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZImageTests.GUI.Controls.Elementary
+namespace ZImageTests.GUI.Controls.Elementary.Zoom
 {
     /// <summary>
     /// Interaction logic for ZoomPicker.xaml
@@ -23,6 +23,8 @@ namespace ZImageTests.GUI.Controls.Elementary
         public ZoomPicker()
         {
             InitializeComponent();
+            SetValue(ZoomListProperty, new List<double>() { 20, 50, 70, 100, 150, 200, 400 });
+
         }
 
 
@@ -52,9 +54,22 @@ namespace ZImageTests.GUI.Controls.Elementary
 
         // Using a DependencyProperty as the backing store for ZoomList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ZoomListProperty =
-            DependencyProperty.Register("ZoomList", typeof(List<double>), typeof(ZoomPicker), new PropertyMetadata(ZoomListDoubles));
+            DependencyProperty.Register("ZoomList", typeof(List<double>), typeof(ZoomPicker), new PropertyMetadata());
 
-        public static List<double> ZoomListDoubles = new List<double>() { 20, 50, 70, 100, 150, 200, 400 };
+
+
+
+        //public List<double> ZoomList
+        //{
+        //    get { return (List<double>)GetValue(ZoomListProperty); }
+        //    set { SetValue(ZoomListProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for ZoomList.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty ZoomListProperty =
+        //    DependencyProperty.Register("ZoomList", typeof(List<double>), typeof(ZoomPicker), new PropertyMetadata(ZoomListDoubles));
+
+
 
 
 

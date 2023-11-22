@@ -2,31 +2,35 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ZImageTests"
+             xmlns:zoom="clr-namespace:ZImageTests.GUI.Controls.Elementary.Zoom"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <zoom:PercentConverter x:Key="PercentConverter"/>
+
+
             <Color x:Key="NodeOnBackgroundColor">#CAD</Color>
             <Color x:Key="NodeOffBackgroundColor">#A8B</Color>
             <Color x:Key="ImageBackgroundColor">#A8B</Color>
             
 
-            <SolidColorBrush x:Key="NodeOnBackgroundBrush" Color="{StaticResource NodeOnBackgroundColor}"/>
-            <SolidColorBrush x:Key="NodeOffBackgroundBrush" Color="{StaticResource NodeOffBackgroundColor}"/>
-            <SolidColorBrush x:Key="ImageBackgroundBrush" Color="{StaticResource ImageBackgroundColor}"/>
+            <SolidColorBrush x:Key="NodeOnBackgroundBrush" Color="{DynamicResource NodeOnBackgroundColor}"/>
+            <SolidColorBrush x:Key="NodeOffBackgroundBrush" Color="{DynamicResource NodeOffBackgroundColor}"/>
+            <SolidColorBrush x:Key="ImageBackgroundBrush" Color="{DynamicResource ImageBackgroundColor}"/>
             
             
             <Color x:Key="MainBackgroundColor">#ABC</Color>
-            <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackgroundColor}"/>
+            <SolidColorBrush x:Key="MainBackgroundBrush" Color="{DynamicResource MainBackgroundColor}"/>
 
             
             
             <Color x:Key="ImageLightGrayColor">#999</Color>
             <Color x:Key="ImageDarkGrayColor">#888</Color>
-            <SolidColorBrush x:Key="ImageLightGrayBrush" Color="{StaticResource ImageLightGrayColor}"/>
-            <SolidColorBrush x:Key="ImageDarkGrayBrush" Color="{StaticResource ImageDarkGrayColor}"/>
+            <SolidColorBrush x:Key="ImageLightGrayBrush" Color="{DynamicResource ImageLightGrayColor}"/>
+            <SolidColorBrush x:Key="ImageDarkGrayBrush" Color="{DynamicResource ImageDarkGrayColor}"/>
             
             <Color x:Key="ImagePaneStatusbarColor">#668</Color>
-            <SolidColorBrush x:Key="ImagePaneStatusbarBrush" Color="{StaticResource ImagePaneStatusbarColor}"/>
+            <SolidColorBrush x:Key="ImagePaneStatusbarBrush" Color="{DynamicResource ImagePaneStatusbarColor}"/>
 
             <!-- 
                 Everything in DrawingGroup is considered translated to area of square 0,0,1,1. 
