@@ -13,6 +13,10 @@
             <SolidColorBrush x:Key="NodeOnBackgroundBrush" Color="{StaticResource NodeOnBackgroundColor}"/>
             <SolidColorBrush x:Key="NodeOffBackgroundBrush" Color="{StaticResource NodeOffBackgroundColor}"/>
             <SolidColorBrush x:Key="ImageBackgroundBrush" Color="{StaticResource ImageBackgroundColor}"/>
+            
+            
+            <Color x:Key="MainBackgroundColor">#9CC</Color>
+            <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackgroundColor}"/>
 
             
             

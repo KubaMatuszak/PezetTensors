@@ -8,11 +8,13 @@
         xmlns:ctrls2="clr-namespace:ZImageTests.GUI.Controls"
         xmlns:elementary="clr-namespace:ZImageTests.GUI.Controls.Elementary"    
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
+        xmlns:mainMenu="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
+        Background="{StaticResource MainBackgroundBrush}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -21,7 +23,8 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition MinWidth="200" />
         </Grid.ColumnDefinitions>
-        <Grid Background="{StaticResource ChessboardBrush}">
+        <mainMenu:MainMenuCtrl Background="{StaticResource MainBackgroundBrush}"/>
+        <Grid Grid.Row="1" Background="{StaticResource ChessboardBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10*"/>
@@ -30,13 +33,14 @@
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
             <ctrls2:ImagePane Grid.RowSpan="2" Grid.ColumnSpan="2"/>
             <Button Content="Load image.." Click="Button_Click_1" Visibility="Collapsed"/>
             <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True" Visibility="Collapsed"/>
-            <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Collapsed"/>
+            <ctrls:ZImage Grid.Row="0" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Collapsed"/>
         </Grid>
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
-        <Grid x:Name="RightPane" Grid.Column="2" Background="AliceBlue">
+        <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
+        <Grid x:Name="RightPane" Grid.Row="1" Grid.Column="2" Background="AliceBlue">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -50,7 +54,7 @@
                 </prcCtrls:ProcessContainer>
             </Grid>
         </Grid>
-        <Button Grid.Row="1" Width="100" Content="Test" Click="Button_Click" />
+        
         
     </Grid>
 </Window>
