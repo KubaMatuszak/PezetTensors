@@ -1,25 +1,25 @@
-﻿<UserControl x:Class="ZImageTests.GUI.Controls.Elementary.ZoomPicker"
+﻿<UserControl x:Class="ZImageTests.GUI.Controls.Elementary.Zoom.ZoomPicker"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ZImageTests.GUI.Controls.Elementary"
+             xmlns:local="clr-namespace:ZImageTests.GUI.Controls.Elementary.Zoom"
              mc:Ignorable="d" 
+             xmlns:zoom="clr-namespace:ZImageTests.GUI.Controls.Elementary.Zoom"
              d:DesignHeight="30" d:DesignWidth="100" x:Name="MyZoomPicker">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<zoom:PercentConverter x:Key="PercentConverter"/>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
     
     <ComboBox ItemsSource="{Binding Path=ZoomList, ElementName=MyZoomPicker}"
               IsReadOnly="False"
+              SelectedItem="{Binding Path=Zoom, ElementName=MyZoomPicker}"
               IsEditable="True">
         <ComboBox.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="30"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding }"/>
-                    <TextBlock Grid.Column="1" Text="%"/>
-                </Grid>
+                <TextBlock Text="{Binding Converter={StaticResource PercentConverter}}" />
             </DataTemplate>
         </ComboBox.ItemTemplate>
     </ComboBox>
