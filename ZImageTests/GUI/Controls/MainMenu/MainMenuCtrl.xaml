@@ -4,19 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
+             xmlns:vm="clr-namespace:ZImageTests.VM"
              mc:Ignorable="d" 
-
+            
              x:Name="MyMainMenu"
              d:DesignHeight="20" d:DesignWidth="800">
-    <Menu Background="{Binding ElementName=MyMainMenu, Path=Background}">
-        <MenuItem Header="File">
-        </MenuItem>
-        <MenuItem Header="Edit">
-        </MenuItem>
-        <MenuItem Header="Settings">
-        </MenuItem>
-        <MenuItem Header="Help">
-            
-        </MenuItem>
+    <UserControl.DataContext>
+        <vm:MainMenu_VM/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate DataType="vm:MenuItem_VM">
+            <TextBlock Text="{Binding Name}" Background="Red"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Menu ItemsSource="{Binding MenuItems}">
+        <Menu.Style>
+            <Style TargetType="Menu">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+        </Menu.Style>
+        <Menu.ItemTemplate>
+            <!-- Define the template for each MenuItem -->
+            <HierarchicalDataTemplate ItemsSource="{Binding SubMenuItems}">
+                <TextBlock Text="{Binding Header}" />
+            </HierarchicalDataTemplate>
+        </Menu.ItemTemplate>
     </Menu>
 </UserControl>
