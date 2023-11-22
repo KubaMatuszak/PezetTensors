@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
              mc:Ignorable="d" 
-             Background="{StaticResource MainBackgroundBrush}"
+
+             x:Name="MyMainMenu"
              d:DesignHeight="20" d:DesignWidth="800">
-    <Menu>
+    <Menu Background="{Binding ElementName=MyMainMenu, Path=Background}">
         <MenuItem Header="File">
         </MenuItem>
         <MenuItem Header="Edit">

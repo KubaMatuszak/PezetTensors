@@ -15,7 +15,7 @@
             <SolidColorBrush x:Key="ImageBackgroundBrush" Color="{StaticResource ImageBackgroundColor}"/>
             
             
-            <Color x:Key="MainBackgroundColor">#9CC</Color>
+            <Color x:Key="MainBackgroundColor">#ABC</Color>
             <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackgroundColor}"/>
 
             
