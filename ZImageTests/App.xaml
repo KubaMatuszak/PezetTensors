@@ -25,6 +25,9 @@
             <SolidColorBrush x:Key="ImageLightGrayBrush" Color="{StaticResource ImageLightGrayColor}"/>
             <SolidColorBrush x:Key="ImageDarkGrayBrush" Color="{StaticResource ImageDarkGrayColor}"/>
             
+            <Color x:Key="ImagePaneStatusbarColor">#668</Color>
+            <SolidColorBrush x:Key="ImagePaneStatusbarBrush" Color="{StaticResource ImagePaneStatusbarColor}"/>
+
             <!-- 
                 Everything in DrawingGroup is considered translated to area of square 0,0,1,1. 
                 This is snapshoted by Viewbox of proper dimensions. 

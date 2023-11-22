@@ -9,21 +9,31 @@
         xmlns:elementary="clr-namespace:ZImageTests.GUI.Controls.Elementary"    
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         xmlns:mainMenu="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
+        WindowStyle="None"
         mc:Ignorable="d"
+        WindowState="{Binding WindowState}"
+        xmlns:vm="clr-namespace:ZImageTests.VM"    
+        xmlns:reactive="clr-namespace:ZImageTests.VM.Reactive"    
         Background="{StaticResource MainBackgroundBrush}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{x:Static reactive:UglyMess.Main_VM}">
+    
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition MinWidth="200" />
         </Grid.ColumnDefinitions>
-        <mainMenu:MainMenuCtrl Background="{StaticResource MainBackgroundBrush}"/>
+        
+        <mainMenu:TopPane DataContext="{Binding MainMenu_VM}"
+            Grid.ColumnSpan="3"
+            Background="{StaticResource MainBackgroundBrush}" />
         <Grid Grid.Row="1" Background="{StaticResource ChessboardBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
