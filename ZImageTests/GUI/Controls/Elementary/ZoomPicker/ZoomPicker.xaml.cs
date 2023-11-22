@@ -35,7 +35,7 @@ namespace ZImageTests.GUI.Controls.Elementary
 
         // Using a DependencyProperty as the backing store for Zoom.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ZoomProperty =
-            DependencyProperty.Register("Zoom", typeof(double), typeof(ZoomPicker), new PropertyMetadata(100));
+            DependencyProperty.Register("Zoom", typeof(double), typeof(ZoomPicker), new PropertyMetadata(100.0D));
 
 
 

@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZImageTests"
         xmlns:ctrls="clr-namespace:ZImageTests.Controls"
+        xmlns:ctrls2="clr-namespace:ZImageTests.GUI.Controls"
+        xmlns:elementary="clr-namespace:ZImageTests.GUI.Controls.Elementary"    
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
@@ -28,6 +30,7 @@
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <ctrls2:ImagePane Grid.RowSpan="2" Grid.ColumnSpan="2"/>
             <Button Content="Load image.." Click="Button_Click_1" Visibility="Collapsed"/>
             <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True" Visibility="Collapsed"/>
             <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Collapsed"/>
@@ -40,7 +43,7 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ctrls:ZImage Grid.Row="0" x:Name="MyHistogram" Margin="30"/>
+                <ctrls2:ImagePane Grid.Row="0" x:Name="MyHistogram"/>
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Gray" ResizeBehavior="PreviousAndNext"/>
                 <prcCtrls:ProcessContainer Grid.Row="2" x:Name="MyProcContainer" AggregatorName="{Binding AggregateName}" >
                     

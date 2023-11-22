@@ -54,38 +54,32 @@ namespace ZImageTests
 
         private void BlackWhiteProcess()
         {
-            var imagePath = _path;// "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_in_a_field.jpg";
+            var imagePath = _path;
             if (File.Exists(imagePath) == false)
                 return;
 
             Image colorImage = Image<L16>.Load(imagePath);
             var rgb24 = colorImage as Image<Rgb24>;
             var l16 = rgb24.ToL16();
-
-            //var imagePath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\TinyTest.jpg";
             Matrix2D matrix2D = new Matrix2D(l16);
             
 
-            BackJobs.RunAndInformDispatched(Dispatcher, () =>
-            {
-                var sdf = StaticPreProcess.SampleAggregator;
-                var res = sdf.ApplyProcess(matrix2D);
-                return res.ResBwIm;
-            },
-                     (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: false);
+            //BackJobs.RunAndInformDispatched(Dispatcher, () =>
+            //{
+            //    var sdf = StaticPreProcess.SampleAggregator;
+            //    var res = sdf.ApplyProcess(matrix2D);
+            //    return res.ResBwIm;
+            //},
+            //         (im) => MyZImage.Show(im, Stretch.Uniform), asBackground: false);
 
 
             
 
             var histMatrix = Marshaled.Get2DHistogram(matrix2D);
-            MyHistogram.Show(histMatrix, Stretch.Fill);
+            MessageBox.Show("Code for showing is commented out.....");
+            //MyHistogram.Show(histMatrix, Stretch.Fill);
             var histImage = histMatrix.ToBitmap();
             histImage.SaveAsBmp("C:\\Users\\rpeze\\source\\repos\\PezetTensors\\ZImageTests\\TestImages\\Fennel_histo.bmp");
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MyProcContainer.DataContext = new VM.Controls.ProcessAggregator_VM(StaticPreProcess.SampleAggregator);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
