@@ -66,7 +66,7 @@ namespace PZWrapper.Extensions
 
 
 
-        public static void ForEach(this Matrix2D bwim, Action<int, int> action)
+        public static void ForEach(this AMatrix bwim, Action<int, int> action)
         {
             for (int rowNo = 0; rowNo < bwim.NRows; rowNo++)
                 for (int colNo = 0; colNo < bwim.NCols; colNo++)

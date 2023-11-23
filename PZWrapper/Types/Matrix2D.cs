@@ -9,19 +9,39 @@ using System.Text;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using System.Numerics;
+
 
 namespace PZWrapper.Types
 {
-    public class Matrix2D : AMatrix, IStrandable
+    public class Matrix3D : AMatrix, IStrandable
     {
-        //public int NRows { get; set; } = 0;
-        //public int NCols { get; set; } = 0;
+        public int NoOfDims => 3;
+        public int[] Strand => new int[] { NRows, NCols };
         public double[] Data = new double[0];
 
-        //public int Height { get; set; }
-        //public int Width { get; set; }
+        public Matrix3D(Image<Rgba64> image)
+        {
+            NCols = image.Width;
+            NRows = image.Height;
+            Data = new double[NRows * NCols * ];
+            this.ForEach((r, c) 
+                => 
+            {
+                var p = image[c, r];
+                Data[r * NCols + c] = p.R; 
+                Data[r * NCols + c + 1] = p.G; 
+                Data[r * NCols + c + 2] = p.B; 
+            });
+        }
 
+
+    }
+
+
+    public class Matrix2D : AMatrix, IStrandable
+    {
+        public int[] Strand => new int[] { NRows, NCols };
+        public double[] Data = new double[0];
         public int NoOfDims => 2;
 
 
@@ -82,7 +102,6 @@ namespace PZWrapper.Types
             
         }
 
-        public int[] Strand => new int[] { NRows, NCols };
 
     }
 
