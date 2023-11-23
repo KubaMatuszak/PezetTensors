@@ -9,7 +9,7 @@
         xmlns:elementary="clr-namespace:ZImageTests.GUI.Controls.Elementary"    
         xmlns:prcCtrls="clr-namespace:ZImageTests.Controls.ProcessControls"
         xmlns:mainMenu="clr-namespace:ZImageTests.GUI.Controls.MainMenu"
-         xmlns:color="clr-namespace:ZImageTests.GUI.Controls.Elementary.Color"
+         xmlns:color="clr-namespace:ZImageTests.GUI.Controls.Elementary.ColorNmsp"
         WindowStyle="None"
         mc:Ignorable="d"
         WindowState="{Binding WindowState}"

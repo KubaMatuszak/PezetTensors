@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using PZWrapper.Extensions;
 
-namespace ZImageTests.GUI.Controls.Elementary.Color
+namespace ZImageTests.GUI.Controls.Elementary.ColorNmsp
 {
     /// <summary>
     /// Interaction logic for ColorPicker.xaml
@@ -22,56 +26,41 @@ namespace ZImageTests.GUI.Controls.Elementary.Color
             for (int col = 0; col < width; col++)
             {
                 var currX = col / width;
-                MyBrush.GradientStops.Add(new System.Windows.Media.GradientStop(MapToColor(currX), currX));
-                for (int row = 0; row < height; row++)
-                {
-
-                    //Ellipse point = new Ellipse() { Width = 2, Height = 2 };
-                    //Canvas.SetLeft(point, 150);
-                    //Canvas.SetTop(point, 75);
-                    //MyColorCanvas.Children.Add(point);
-                }
+                var color = MapToColor(currX, 1, 0.5);
+                MyBrush.GradientStops.Add(new GradientStop(color, currX));
             }
         }
 
 
-        public static System.Windows.Media.Color MapToColor(double value)
+        public static System.Windows.Media.Color MapToColor(double hue, double sat, double lum)
         {
-            if (value < 0 || value > 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 0 and 1.");
-            }
-
-            // Map the value to a hue between 0 and 360 (360 degrees in the color wheel)
-            double hueAngle = value < 0? 0: value > 1? 360: value * 360;
-
-            // Create a Color using the HSL color space
-            double h = hueAngle, sat = 1, lum = 0.5;
-            h /= 360;
-
+            hue = hue.Clip(0, 1);
             double r, g, b;
-
             if (sat == 0)
             {
-                r = g = b = lum; // achromatic
+                r = lum;
+                g = lum;
+                b = lum;
             }
             else
             {
-                
-
                 double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
                 double p = 2 * lum - q;
 
-                r = Hue2Rgb(p, q, h + 1.0 / 3);
-                g = Hue2Rgb(p, q, h);
-                b = Hue2Rgb(p, q, h - 1.0 / 3);
+                //r = Hue2RgbAdv(p, q, hue + 1.0 / 3);
+                //g = Hue2RgbAdv(p, q, hue);
+                //b = Hue2RgbAdv(p, q, hue - 1.0 / 3);
+                var t = Hue2RGB(hue);
+                r = t.r;
+                g = t.g;
+                b = t.b;
             }
 
-            return System.Windows.Media.Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
+            return Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
             
         }
 
-        public static double Hue2Rgb(double p, double q, double t)
+        public static double Hue2RgbAdv(double p, double q, double t)
         {
             if (t < 0) t += 1;
             if (t > 1) t -= 1;
@@ -81,38 +70,31 @@ namespace ZImageTests.GUI.Controls.Elementary.Color
             return p;
         }
 
-        //private static System.Windows.Media.Color HslToRgb(double h, double sat, double lum)
-        //{
-        //    h /= 360;
 
-        //    double r, g, b;
+        public static (double r, double g, double b) Hue2RGB(double hue)
+        {
+            hue = hue.Clip(0, 1);
+            var small = Stops.Where(s => s.stop <= hue).Last();
+            var big = Stops.Where(s => s.stop >= hue).First();
+            var weight = 6 * (hue - small.stop);
 
-        //    if (sat == 0)
-        //    {
-        //        r = g = b = lum; // achromatic
-        //    }
-        //    else
-        //    {
-        //        double Hue2Rgb(double p, double q, double t)
-        //        {
-        //            if (t < 0) t += 1;
-        //            if (t > 1) t -= 1;
-        //            if (t < 1.0 / 6) return p + (q - p) * 6 * t;
-        //            if (t < 1.0 / 2) return q;
-        //            if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
-        //            return p;
-        //        }
 
-        //        double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
-        //        double p = 2 * lum - q;
+            var meanR = (big.r * weight + small.r * (1 - weight)).Clip(0, 1);
+            var meanG = (big.g * weight + small.g * (1 - weight)).Clip(0, 1);
+            var meanB = (big.b * weight + small.b * (1 - weight)).Clip(0, 1);
+            return (meanR, meanG, meanB);
+        }
 
-        //        r = Hue2Rgb(p, q, h + 1.0 / 3);
-        //        g = Hue2Rgb(p, q, h);
-        //        b = Hue2Rgb(p, q, h - 1.0 / 3);
-        //    }
-
-        //    return System.Windows.Media.Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
-        //}
+        public static List<(double stop, double r, double g, double b)> Stops = new List<(double stop, double r, double g, double b)>() 
+        {
+            (0,            1,   0,   0  ),
+            (1/(double)6,  0.7, 0.7, 0  ),
+            (1/(double)3,  0,   1,   0  ),
+            (1/(double)2,  0,   0.7, 0.7),
+            (4/(double)6,  0,   0,   1  ),
+            (5/(double)6,  0.7, 0,   0.7),
+            (1/(double)1,  1,   0,   0  ),
+        };
 
     }
 }
