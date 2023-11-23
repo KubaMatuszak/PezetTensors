@@ -46,11 +46,7 @@ namespace ZImageTests.GUI.Controls.Elementary.Color
             double hueAngle = value < 0? 0: value > 1? 360: value * 360;
 
             // Create a Color using the HSL color space
-            return HslToRgb(hueAngle, 1, 0.5);
-        }
-
-        private static System.Windows.Media.Color HslToRgb(double h, double sat, double lum)
-        {
+            double h = hueAngle, sat = 1, lum = 0.5;
             h /= 360;
 
             double r, g, b;
@@ -61,15 +57,7 @@ namespace ZImageTests.GUI.Controls.Elementary.Color
             }
             else
             {
-                double Hue2Rgb(double p, double q, double t)
-                {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1.0 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1.0 / 2) return q;
-                    if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
-                    return p;
-                }
+                
 
                 double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
                 double p = 2 * lum - q;
@@ -80,7 +68,51 @@ namespace ZImageTests.GUI.Controls.Elementary.Color
             }
 
             return System.Windows.Media.Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
+            
         }
+
+        public static double Hue2Rgb(double p, double q, double t)
+        {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1.0 / 6) return p + (q - p) * 6 * t;
+            if (t < 1.0 / 2) return q;
+            if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
+            return p;
+        }
+
+        //private static System.Windows.Media.Color HslToRgb(double h, double sat, double lum)
+        //{
+        //    h /= 360;
+
+        //    double r, g, b;
+
+        //    if (sat == 0)
+        //    {
+        //        r = g = b = lum; // achromatic
+        //    }
+        //    else
+        //    {
+        //        double Hue2Rgb(double p, double q, double t)
+        //        {
+        //            if (t < 0) t += 1;
+        //            if (t > 1) t -= 1;
+        //            if (t < 1.0 / 6) return p + (q - p) * 6 * t;
+        //            if (t < 1.0 / 2) return q;
+        //            if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
+        //            return p;
+        //        }
+
+        //        double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
+        //        double p = 2 * lum - q;
+
+        //        r = Hue2Rgb(p, q, h + 1.0 / 3);
+        //        g = Hue2Rgb(p, q, h);
+        //        b = Hue2Rgb(p, q, h - 1.0 / 3);
+        //    }
+
+        //    return System.Windows.Media.Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
+        //}
 
     }
 }
