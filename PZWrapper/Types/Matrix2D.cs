@@ -34,7 +34,26 @@ namespace PZWrapper.Types
             });
         }
 
+        public Matrix3D(int width, int height)
+        {
+            NRows = height;
+            NCols = width;
+            Data = new double[NRows * NCols * 3];
+        }
 
+
+        /// <summary>
+        /// Constructor of matrix, given width, height, and values in linear form.
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        /// <param name="values"></param>
+        public Matrix3D(int height, int width, double[] values)
+        {
+            NRows = height;
+            NCols = width;
+            Data = values;
+        }
     }
 
 
