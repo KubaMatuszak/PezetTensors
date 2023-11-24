@@ -23,7 +23,7 @@ namespace PZWrapper.Types
         {
             NCols = image.Width;
             NRows = image.Height;
-            Data = new double[NRows * NCols * ];
+            Data = new double[NRows * NCols * 3];
             this.ForEach((r, c) 
                 => 
             {
