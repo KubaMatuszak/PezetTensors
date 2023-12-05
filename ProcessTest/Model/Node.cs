@@ -31,5 +31,6 @@ namespace ProcessTest.Model
             return list;
         }
 
+        public bool IsSelected;
     }
 }

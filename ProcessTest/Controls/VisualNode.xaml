@@ -4,10 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProcessTest.Controls"
-             mc:Ignorable="d" 
-             
+             xmlns:vm="clr-namespace:ProcessTest.ViewModels"
+             mc:Ignorable="d" MouseDown="UserControl_MouseDown"
+             d:DataContext="{d:DesignInstance Type=vm:NodeViewModel, IsDesignTimeCreatable=False}"
              Width="100" Height="50">
     <Border BorderThickness="2" BorderBrush="Black">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                        <Setter Property="Background" Value="Blue"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
         <Grid>
             <Border BorderThickness="2" BorderBrush="Black" Height="10" Width="10" HorizontalAlignment="Left"/>
             <Border BorderThickness="2" BorderBrush="Black" Height="10" Width="10" HorizontalAlignment="Right"/>

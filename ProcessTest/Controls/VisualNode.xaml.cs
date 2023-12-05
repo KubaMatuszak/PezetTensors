@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProcessTest.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace ProcessTest.Controls
         public VisualNode()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var nodeVM = DataContext as NodeViewModel;
+            if (nodeVM == null)
+                return;
+            if (nodeVM.IsSelected == false)
+                nodeVM.IsSelected = true;
+            
         }
     }
 }
