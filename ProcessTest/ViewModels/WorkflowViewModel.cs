@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace ProcessTest.ViewModels
 {
-    public class NodesPresenterViewModel : ObservableObject
+    public class WorkflowViewModel : ObservableObject
     {
 		private ObservableCollection<NodeViewModel> nodes = new ObservableCollection<NodeViewModel>();
         private ObservableCollection<CableViewModel> cables = new ObservableCollection<CableViewModel>();
-
-		public ObservableCollection<NodeViewModel> Nodes
+        private Workflow workflow { get; set; }
+		public ObservableCollection<NodeViewModel> NodeVMs
 		{
-			get { return nodes; }
+			get => nodes; 
 			set => SetProperty(ref nodes, value);
 		}
 
-        public ObservableCollection<CableViewModel> Cables
+        public ObservableCollection<CableViewModel> CableVMs
         {
-            get { return cables; }
+            get => cables;
             set => SetProperty(ref cables, value);
         }
 

@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid>
 
-        <ItemsControl ItemsSource="{Binding Nodes}">
+        <ItemsControl ItemsSource="{Binding NodeVMs}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:NodeViewModel">
                     <ctrls:VisualNode HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -37,7 +37,7 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
 
-        <ItemsControl ItemsSource="{Binding Cables}">
+        <ItemsControl ItemsSource="{Binding CableVMs}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:CableViewModel">
                     <cables:SimpleCable HorizontalAlignment="Left" 

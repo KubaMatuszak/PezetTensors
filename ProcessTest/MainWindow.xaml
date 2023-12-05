@@ -14,7 +14,7 @@
     
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <vm:NodesPresenterViewModel/>
+        <vm:WorkflowViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <conv:OffsetToMarginMulticonverter x:Key="OffsetToMarginMulticonverter"/>
@@ -22,7 +22,7 @@
     <Grid>
         <view:NodesPresenter x:Name="MyNodePresenter">
             <view:NodesPresenter.DataContext>
-                <vm:NodesPresenterViewModel/>
+                <vm:WorkflowViewModel/>
             </view:NodesPresenter.DataContext>
         </view:NodesPresenter>
     </Grid>
