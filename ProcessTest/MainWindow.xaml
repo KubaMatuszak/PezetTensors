@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessTest"
+        xmlns:ctrls="clr-namespace:ProcessTest.Controls"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Canvas x:Name="MyCanvas">
+        <ctrls:VisualNode x:Name="Node1" Canvas.Left="200" Canvas.Top="100"/>
+        <ctrls:VisualNode x:Name="Node2" Canvas.Left="421" Canvas.Top="283"/>
+    </Canvas>
 </Window>
