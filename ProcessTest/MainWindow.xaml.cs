@@ -1,17 +1,10 @@
 ﻿using ProcessTest.Controls;
+using ProcessTest.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ProcessTest
@@ -28,14 +21,33 @@ namespace ProcessTest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+            //this.DataContext = new NodesPresenterViewModel();
+
+
+            var vm = this.DataContext as NodesPresenterViewModel;
+            var root = NodeTests.GimmeTree();
+            var nodeList = root.AsList();
+
+            vm.Nodes = new System.Collections.ObjectModel.ObservableCollection<NodeViewModel>(
+                            nodeList.Select(n => new NodeViewModel() { XOffset = n.X, YOffset = n.Y }
+                            ));
+
+
+
+
+
+            return;
+
+
+
+
             MyCanvas.Children.Clear();
 
-            var root = NodeTests.GimmeTree();
-
-            var list = root.AsList();
 
 
-            foreach(var node in list)
+
+            foreach (var node in nodeList)
             {
                 var visNode = new VisualNode();
                 MyCanvas.Children.Add(visNode);
@@ -43,11 +55,11 @@ namespace ProcessTest
                 Canvas.SetTop(visNode, node.Y);
 
 
-                foreach(var ch in node.Children)
+                foreach (var ch in node.Children)
                 {
                     var geom = CreateSplineBetweenPoints(
-                        new Point(node.X+100, node.Y+25),
-                        new Point(ch.X, ch.Y+25));
+                        new Point(node.X + 100, node.Y + 25),
+                        new Point(ch.X, ch.Y + 25));
                     Path path = new Path();
                     path.Stroke = Brushes.RosyBrown;
                     path.StrokeThickness = 3;
@@ -73,7 +85,7 @@ namespace ProcessTest
             var dx = endPoint.X - startPoint.X;
             var dxAbs = Math.Abs(dx);
             var dy = endPoint.Y - startPoint.Y;
-            var beg = dx/3;
+            var beg = dx / 3;
             var rc = new Point(startPoint.X + beg, startPoint.Y);
             var lc = new Point(endPoint.X - beg, endPoint.Y);
             pathFigure.Segments.Add(new BezierSegment(rc, lc, endPoint, true));

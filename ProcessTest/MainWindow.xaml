@@ -5,11 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessTest"
         xmlns:ctrls="clr-namespace:ProcessTest.Controls"
+        xmlns:vm="clr-namespace:ProcessTest.ViewModels"
+        xmlns:conv="clr-namespace:ProcessTest.Converters"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
+
         Title="MainWindow" Height="450" Width="800">
-    <Canvas x:Name="MyCanvas">
-        <ctrls:VisualNode x:Name="Node1" Canvas.Left="200" Canvas.Top="100"/>
-        <ctrls:VisualNode x:Name="Node2" Canvas.Left="421" Canvas.Top="283"/>
-    </Canvas>
+    <Window.DataContext>
+        <vm:NodesPresenterViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <conv:OffsetToMarginMulticonverter x:Key="OffsetToMarginMulticonverter"/>
+    </Window.Resources>
+    <Grid>
+
+        <ItemsControl ItemsSource="{Binding Nodes}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:NodeViewModel">
+                    <ctrls:VisualNode HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <ctrls:VisualNode.Margin>
+                            <MultiBinding Converter="{StaticResource OffsetToMarginMulticonverter}">
+                                <Binding Path="XOffset" />
+                                <Binding Path="YOffset" />
+                            </MultiBinding>
+                        </ctrls:VisualNode.Margin>
+                    </ctrls:VisualNode>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        
+                    </Grid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+
+        <Canvas x:Name="MyCanvas" Visibility="Collapsed">
+            <ctrls:VisualNode x:Name="Node1" Canvas.Left="200" Canvas.Top="100"/>
+            <ctrls:VisualNode x:Name="Node2" Canvas.Left="421" Canvas.Top="283"/>
+        </Canvas>
+    </Grid>
+
 </Window>

@@ -1,4 +1,5 @@
 ﻿using ProcessTest.Model;
+using ProcessTest.ViewModels.basic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,9 +11,9 @@ namespace ProcessTest.ViewModels
 {
     public class NodesPresenterViewModel : ObservableObject
     {
-		private ObservableCollection<Node> nodes;
+		private ObservableCollection<NodeViewModel> nodes;
 
-		public ObservableCollection<Node> Nodes
+		public ObservableCollection<NodeViewModel> Nodes
 		{
 			get { return nodes; }
 			set => SetProperty(ref nodes, value);
