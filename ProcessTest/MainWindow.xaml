@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessTest"
         xmlns:ctrls="clr-namespace:ProcessTest.Controls"
+        xmlns:cables="clr-namespace:ProcessTest.Controls.Cables"
         xmlns:vm="clr-namespace:ProcessTest.ViewModels"
         xmlns:conv="clr-namespace:ProcessTest.Converters"
         mc:Ignorable="d"
@@ -40,6 +41,37 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+
+        <ItemsControl ItemsSource="{Binding Cables}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:CableViewModel">
+                    <cables:SimpleCable HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top" 
+                                        Width="1000" 
+                                        Height="1000"
+                                        Xin="{Binding XFrom}" 
+                                        Yin="{Binding YFrom}" 
+                                        Xout="{Binding XTo}" 
+                                        Yout="{Binding YTo}">
+                        <!--<cables:SimpleCable.Margin>
+                            <MultiBinding Converter="{StaticResource OffsetToMarginMulticonverter}">
+                                <Binding Path="XFrom" />
+                                <Binding Path="YFrom" />
+                            </MultiBinding>
+                        </cables:SimpleCable.Margin>-->
+                    </cables:SimpleCable>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+
+                    </Grid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+
 
 
         <Canvas x:Name="MyCanvas" Visibility="Collapsed">

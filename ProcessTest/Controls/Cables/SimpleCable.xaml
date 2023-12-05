@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProcessTest.Controls.Cables"
+             xmlns:conv="clr-namespace:ProcessTest.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-         
+    <Grid >
+        <Border BorderBrush="Transparent" BorderThickness="0">
+            <Canvas>
+                <Path x:Name="Path2" StrokeThickness="4" Stroke="Black"/>
+                <Path x:Name="Path1" StrokeThickness="2" Stroke="White"/>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>
