@@ -11,8 +11,8 @@ namespace ProcessTest.ViewModels
 {
     public class NodesPresenterViewModel : ObservableObject
     {
-		private ObservableCollection<NodeViewModel> nodes;
-		private ObservableCollection<CableViewModel> cables;
+		private ObservableCollection<NodeViewModel> nodes = new ObservableCollection<NodeViewModel>();
+        private ObservableCollection<CableViewModel> cables = new ObservableCollection<CableViewModel>();
 
 		public ObservableCollection<NodeViewModel> Nodes
 		{

@@ -7,10 +7,11 @@
         xmlns:ctrls="clr-namespace:ProcessTest.Controls"
         xmlns:cables="clr-namespace:ProcessTest.Controls.Cables"
         xmlns:vm="clr-namespace:ProcessTest.ViewModels"
+        xmlns:view="clr-namespace:ProcessTest.Views"
         xmlns:conv="clr-namespace:ProcessTest.Converters"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-
+    
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <vm:NodesPresenterViewModel/>
@@ -19,65 +20,11 @@
         <conv:OffsetToMarginMulticonverter x:Key="OffsetToMarginMulticonverter"/>
     </Window.Resources>
     <Grid>
-
-        <ItemsControl ItemsSource="{Binding Nodes}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="vm:NodeViewModel">
-                    <ctrls:VisualNode HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <ctrls:VisualNode.Margin>
-                            <MultiBinding Converter="{StaticResource OffsetToMarginMulticonverter}">
-                                <Binding Path="XOffset" />
-                                <Binding Path="YOffset" />
-                            </MultiBinding>
-                        </ctrls:VisualNode.Margin>
-                    </ctrls:VisualNode>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid>
-                        
-                    </Grid>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-
-        <ItemsControl ItemsSource="{Binding Cables}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="vm:CableViewModel">
-                    <cables:SimpleCable HorizontalAlignment="Left" 
-                                        VerticalAlignment="Top" 
-                                        Width="1000" 
-                                        Height="1000"
-                                        Xin="{Binding XFrom}" 
-                                        Yin="{Binding YFrom}" 
-                                        Xout="{Binding XTo}" 
-                                        Yout="{Binding YTo}">
-                        <!--<cables:SimpleCable.Margin>
-                            <MultiBinding Converter="{StaticResource OffsetToMarginMulticonverter}">
-                                <Binding Path="XFrom" />
-                                <Binding Path="YFrom" />
-                            </MultiBinding>
-                        </cables:SimpleCable.Margin>-->
-                    </cables:SimpleCable>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid>
-
-                    </Grid>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-
-
-
-
-        <Canvas x:Name="MyCanvas" Visibility="Collapsed">
-            <ctrls:VisualNode x:Name="Node1" Canvas.Left="200" Canvas.Top="100"/>
-            <ctrls:VisualNode x:Name="Node2" Canvas.Left="421" Canvas.Top="283"/>
-        </Canvas>
+        <view:NodesPresenter x:Name="MyNodePresenter">
+            <view:NodesPresenter.DataContext>
+                <vm:NodesPresenterViewModel/>
+            </view:NodesPresenter.DataContext>
+        </view:NodesPresenter>
     </Grid>
 
 </Window>
