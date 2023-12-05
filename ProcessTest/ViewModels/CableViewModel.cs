@@ -1,4 +1,5 @@
-﻿using ProcessTest.ViewModels.basic;
+﻿using ProcessTest.Model;
+using ProcessTest.ViewModels.basic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,33 +10,34 @@ namespace ProcessTest.ViewModels
 {
     public class CableViewModel : ObservableObject
     {
-        private double xFrom;
-        private double yFrom;
-        private double xTo;
-        private double yTo;
+        private Cable _cable;
+        public CableViewModel(Cable cable)
+        {
+            _cable = cable;
+        }
 
         public double XFrom
         {
-            get => xFrom;
-            set => SetProperty(ref xFrom, value);
+            get => _cable.XFrom;
+            set => SetProperty(ref _cable.XFrom, value);
         }
 
         public double YFrom
         {
-            get => yFrom;
-            set => SetProperty(ref yFrom, value);
+            get => _cable.YFrom;
+            set => SetProperty(ref _cable.YFrom, value);
         }
 
         public double XTo
         {
-            get => xTo;
-            set => SetProperty(ref xTo, value);
+            get => _cable.XTo;
+            set => SetProperty(ref _cable.XTo, value);
         }
 
         public double YTo
         {
-            get => yTo;
-            set => SetProperty(ref yTo, value);
+            get => _cable.YTo;
+            set => SetProperty(ref _cable.YTo, value);
         }
 
 

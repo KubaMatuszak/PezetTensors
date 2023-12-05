@@ -13,9 +13,9 @@
         Loaded="Window_Loaded"
     
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:WorkflowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <conv:OffsetToMarginMulticonverter x:Key="OffsetToMarginMulticonverter"/>
     </Window.Resources>

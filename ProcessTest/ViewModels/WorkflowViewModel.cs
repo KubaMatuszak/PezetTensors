@@ -11,7 +11,24 @@ namespace ProcessTest.ViewModels
 {
     public class WorkflowViewModel : ObservableObject
     {
-		private ObservableCollection<NodeViewModel> nodes = new ObservableCollection<NodeViewModel>();
+        public WorkflowViewModel() 
+        {
+
+        }
+
+
+        public WorkflowViewModel(Workflow workflow)
+        {
+            NodeVMs = new System.Collections.ObjectModel.ObservableCollection<NodeViewModel>(
+                           workflow.Nodes.Select(n => new NodeViewModel(n)
+                           ));
+
+            CableVMs = new System.Collections.ObjectModel.ObservableCollection<CableViewModel>(
+                           workflow.Cables.Select(c => new CableViewModel(c)));
+        }
+
+
+        private ObservableCollection<NodeViewModel> nodes = new ObservableCollection<NodeViewModel>();
         private ObservableCollection<CableViewModel> cables = new ObservableCollection<CableViewModel>();
         private Workflow workflow { get; set; }
 		public ObservableCollection<NodeViewModel> NodeVMs

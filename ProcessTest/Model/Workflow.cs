@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProcessTest.Model
 {
-    class Workflow
+    public class Workflow
     {
         public List<Node> Nodes { get; set; }
         public List<Cable> Cables { get; set; }

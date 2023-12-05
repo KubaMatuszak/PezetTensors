@@ -1,4 +1,5 @@
 ﻿using ProcessTest.Model;
+using ProcessTest.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,12 @@ namespace ProcessTest
 {
     public static class NodeTests
     {
-        public static Node GimmeTree()
+
+        /// <summary>
+        /// Method generates sample workflow.
+        /// </summary>
+        /// <returns></returns>
+        public static Workflow GimmeWorkflow()
         {
             Node root = new Node() { Name = "Root node 00", X = 50, Y = 40 };
             Node node1 = new Node() { Name = "node 01", X = 130, Y = 130 };
@@ -17,7 +23,16 @@ namespace ProcessTest
             Node node3 = new Node() { Name = "node 03", X = 550, Y = 350 };
             root.AppendNext(node1).AppendNext(node3);
             root.AppendNext(node2).AppendNext(node3);
-            return root;
+
+            Workflow workflow = new Workflow();
+            workflow.Nodes = root.AsList();
+            workflow.Cables = new List<Cable>();
+
+            foreach (var node in workflow.Nodes)
+                foreach (var ch in node.Children)
+                    workflow.Cables.Add(new Cable() { XFrom = node.X, YFrom = node.Y, XTo = ch.X, YTo = ch.Y });
+
+            return workflow;
         }
 
         

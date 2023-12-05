@@ -1,4 +1,5 @@
-﻿using ProcessTest.ViewModels.basic;
+﻿using ProcessTest.Model;
+using ProcessTest.ViewModels.basic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,23 @@ namespace ProcessTest.ViewModels
 {
     public class NodeViewModel : ObservableObject
     {
-		private double xOffset;
-		private double yOffset;
+        private Node _n;
 
-		public double XOffset
+        public NodeViewModel(Node n)
+        {
+            _n = n;
+        }
+
+        public double XOffset
 		{
-			get => xOffset;
-			set => SetProperty(ref xOffset, value);
+			get => _n.X;
+			set => SetProperty(ref _n.X, value);
 		}
 
         public double YOffset
         {
-            get => yOffset;
-            set => SetProperty(ref yOffset, value);
+            get => _n.Y;
+            set => SetProperty(ref _n.Y, value);
         }
 
 
