@@ -28,6 +28,9 @@ namespace ProcessTest.Controls
 
         private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (!(e.LeftButton == MouseButtonState.Pressed && e.RightButton == MouseButtonState.Released))
+                return;
+
             var nodeVM = DataContext as NodeViewModel;
             if (nodeVM == null)
                 return;

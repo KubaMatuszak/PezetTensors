@@ -10,6 +10,7 @@
         xmlns:view="clr-namespace:ProcessTest.Views"
         xmlns:conv="clr-namespace:ProcessTest.Converters"
         mc:Ignorable="d"
+        Keyboard.KeyDown="Window_KeyDown"
         Loaded="Window_Loaded"
     
         Title="MainWindow" Height="450" Width="800">

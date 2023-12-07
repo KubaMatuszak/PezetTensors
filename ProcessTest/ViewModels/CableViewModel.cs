@@ -10,35 +10,16 @@ namespace ProcessTest.ViewModels
 {
     public class CableViewModel : ObservableObject
     {
-        private Cable _cable;
-        public CableViewModel(Cable cable)
-        {
-            _cable = cable;
-        }
+        private Cable _c;
+        public CableViewModel(Cable cable) { _c = cable; }
 
-        public double XFrom
-        {
-            get => _cable.XFrom;
-            set => SetProperty(ref _cable.XFrom, value);
-        }
+        public double XFrom { get => _c.XFrom; set => SetProperty(ref _c.XFrom, value); }
 
-        public double YFrom
-        {
-            get => _cable.YFrom;
-            set => SetProperty(ref _cable.YFrom, value);
-        }
+        public double YFrom { get => _c.YFrom; set => SetProperty(ref _c.YFrom, value); }
 
-        public double XTo
-        {
-            get => _cable.XTo;
-            set => SetProperty(ref _cable.XTo, value);
-        }
+        public double XTo { get => _c.XTo; set => SetProperty(ref _c.XTo, value); }
 
-        public double YTo
-        {
-            get => _cable.YTo;
-            set => SetProperty(ref _cable.YTo, value);
-        }
+        public double YTo { get => _c.YTo; set => SetProperty(ref _c.YTo, value); }
 
 
     }

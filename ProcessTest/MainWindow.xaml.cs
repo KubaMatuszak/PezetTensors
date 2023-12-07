@@ -18,7 +18,6 @@ namespace ProcessTest
         {
             var wrkflw = NodeTests.GimmeWorkflow();
             var vm = new WorkflowViewModel(wrkflw);
-
             //vm.NodeVMs = new System.Collections.ObjectModel.ObservableCollection<NodeViewModel>(
             //                nodeList.Select(n => new NodeViewModel() { XOffset = n.X, YOffset = n.Y }
             //                ));
@@ -30,6 +29,14 @@ namespace ProcessTest
             //        vm.CableVMs.Add(new CableViewModel() { XFrom = node.X, YFrom = node.Y, XTo = ch.X, YTo = ch.Y });
 
             MyNodePresenter.DataContext = vm;
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e == null)
+                return;
+            var k = e.Key;
+
         }
     }
 }
