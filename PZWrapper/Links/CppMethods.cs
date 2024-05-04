@@ -14,6 +14,7 @@ namespace PZWrapper.Links
     /// </summary>
     public static class CppMethods
     {
+        //TODO: autoszukanie tej dllki
         public const string dllPath = "C:\\Users\\Dell\\source\\repos\\PezetTensors\\x64\\Debug\\PezetTensors.dll";
 
         [DllImport(dllPath)]

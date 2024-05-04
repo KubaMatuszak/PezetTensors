@@ -36,7 +36,6 @@ double* Get2DHistogram(int width, int height, double* inValues)
 	for (int i = 0; i < totalHistLen; i++)
 		histValues[i] = 0;
 
-
     int randMax = 255;
 	int currRand = 9;
     for (int c = 0; c < width; c++) 
@@ -58,10 +57,7 @@ double* Get2DHistogram(int width, int height, double* inValues)
 
 	for (int i = 0; i < totalHistLen; i++)
 		histValues[i] = histValues[i] * coeff;
-	
 
-
-	 
 	int x1 = UINT16_MAX / 8;
 	int y1 = (7*UINT16_MAX) / 8;
 	auto kneeCoeff = (float)y1 / (float)x1;
