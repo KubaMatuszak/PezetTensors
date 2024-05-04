@@ -42,7 +42,14 @@ namespace PZControlsWpf.Converters
     {
         public override Type TypeIn => typeof(Matrix2D);
         public override Type TypeOut => typeof(ImageSource);
-        public override Func<object, object> Func => (o) => ((Matrix2D)System.Convert.ChangeType(o, typeof(Matrix2D))).ToBitmap().ToImageSource();
+        public override Func<object, object> Func =>
+            (o) => 
+            {
+                var two2m = o as Matrix2D;
+                //TODO: sprawdzenie lub ogar wyjątku. Zakładam na razie brak wyjebki xD
+                var bmp = two2m.ToBitmap();
+                return bmp.ToImageSource(); 
+            };
 
     }
 

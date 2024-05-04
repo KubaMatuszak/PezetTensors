@@ -30,8 +30,10 @@ namespace ZImageTests.Controls
             InitializeComponent();
         }
 
-        public void Show(Matrix2D image, Stretch stretch) { ZImageDisp.Source = AutoConverter.ConvChain.Convert<Matrix2D, ImageSource>(image); ZImageDisp.Stretch = stretch; }
-        public void Show(ImageSource imageSource, Stretch stretch) { ZImageDisp.Source = imageSource; ZImageDisp.Stretch = stretch; }
-
+        public void Show(ImageSource imageSrc, Stretch stretch) 
+        { 
+            ZImageDisp.Source = imageSrc; 
+            ZImageDisp.Stretch = stretch; 
+        }
     }
 }

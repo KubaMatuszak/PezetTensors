@@ -61,7 +61,7 @@ double* Get2DHistogram(int width, int height, double* inValues)
 	
 
 
-
+	 
 	int x1 = UINT16_MAX / 8;
 	int y1 = (7*UINT16_MAX) / 8;
 	auto kneeCoeff = (float)y1 / (float)x1;
@@ -70,7 +70,7 @@ double* Get2DHistogram(int width, int height, double* inValues)
 	{
 		double val = histValues[i];
 		val = val < x1 ? (val * kneeCoeff) : ((int)((val- y1) * afterKneeCoeff)) + y1;
-		histValues[i] = val;
+		histValues[i] = val; 
 	}
 
 

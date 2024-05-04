@@ -41,7 +41,9 @@ namespace PZWrapper.Extensions
             {
                 for (int c = 0; c < width; c++)
                 {
-                    L16 pixel = new L16((ushort)pixelArray[r*bwim.NCols + c]);
+                    var idx = r * bwim.NCols + c;
+                    var val = (ushort)pixelArray[idx];
+                    L16 pixel = new L16(val);
                     image[c, r] = pixel;
                 }
             }

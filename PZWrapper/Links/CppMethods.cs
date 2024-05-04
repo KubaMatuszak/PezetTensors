@@ -14,8 +14,7 @@ namespace PZWrapper.Links
     /// </summary>
     public static class CppMethods
     {
-        public const string dllPath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\x64\\Debug\\PezetTensors.dll";
-
+        public const string dllPath = "C:\\Users\\Dell\\source\\repos\\PezetTensors\\x64\\Debug\\PezetTensors.dll";
 
         [DllImport(dllPath)]
         public static extern double Sum(int len, double[] values);

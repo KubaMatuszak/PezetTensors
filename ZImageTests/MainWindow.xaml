@@ -46,9 +46,9 @@
             </Grid.ColumnDefinitions>
             
             <ctrls2:ImagePane Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-            <Button Content="Load image.." Click="Button_Click_1" Visibility="Collapsed"/>
-            <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True" Visibility="Collapsed"/>
-            <ctrls:ZImage Grid.Row="0" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Collapsed"/>
+            <Button Content="Load image.." Click="Button_Click_1" Visibility="Visible"/>
+            <TextBox x:Name="PathTxtBox" Grid.Column="1" IsReadOnly="True" Visibility="Visible"/>
+            <ctrls:ZImage Grid.Row="1" Grid.ColumnSpan="2" x:Name="MyZImage" Margin="30" Visibility="Visible"/>
         </Grid>
         <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"/>
         <Grid x:Name="RightPane" Grid.Row="1" Grid.Column="2" Background="AliceBlue">

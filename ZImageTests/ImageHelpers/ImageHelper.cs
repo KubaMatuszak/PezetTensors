@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using System.Collections;
+using SixLabors.ImageSharp.Advanced;
 
 namespace PZControlsWpf.ImageHelpers
 {
@@ -21,48 +22,17 @@ namespace PZControlsWpf.ImageHelpers
 
         public static ImageSource ToImageSource(this Image<L16> bmp) => bmp.ToBitmapImage();
 
-        // Function to convert byte array to ImageSource
-        public static byte[] BitmapToByteArray(Image<L16> image)
-        {
-            byte[] imageData = null;
-
-            try
-            {
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    // Save the Bitmap image to the stream as a JPEG format
-                    SixLabors.ImageSharp.Formats.ImageEncoder imageEncoder = new JpegEncoder();
-                    image.Save(stream, imageEncoder);
-
-                    // Get the bytes from the stream
-                    imageData = stream.ToArray();
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any potential exceptions
-                Console.WriteLine("Error: " + ex.Message);
-            }
-
-            return imageData;
-        }
-
-
         static BitmapImage ToBitmapImage(this Image<L16> image)
         {
-            
             using (var stream = new MemoryStream())
             {
-                // Save the ImageSharp image to a stream
+                var currDir = Directory.GetCurrentDirectory();
                 image.SaveAsBmp(stream);
-
-                // Create a new BitmapImage and set its stream source
                 var bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.StreamSource = new MemoryStream(stream.ToArray());
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
                 bitmapImage.EndInit();
-
                 return bitmapImage;
             }
         }
