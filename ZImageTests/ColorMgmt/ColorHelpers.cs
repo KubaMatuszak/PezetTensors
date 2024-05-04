@@ -10,21 +10,15 @@ namespace PZWrapper.ColorMgmt
 {
     public static class ColorHelpers
     {
-
         public static System.Windows.Media.Color MapToColor(double hue, double sat, double lum)
         {
             hue = hue.Clip(0.0D, 1);
             double r, g, b;
             if (sat == 0)
-            {
-                r = lum;
-                g = lum;
-                b = lum;
-            }
+                r = g = b = lum;
             else
             {
                 double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
-                double p = 2 * lum - q;
                 var rgbTup = Hue2RGB(hue);
                 r = rgbTup.r;
                 g = rgbTup.g;
@@ -32,19 +26,7 @@ namespace PZWrapper.ColorMgmt
             }
 
             return Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
-
         }
-
-        public static double Hue2RgbAdv(double p, double q, double t)
-        {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1.0 / 6) return p + (q - p) * 6 * t;
-            if (t < 1.0 / 2) return q;
-            if (t < 2.0 / 3) return p + (q - p) * (2.0 / 3 - t) * 6;
-            return p;
-        }
-
 
         public static (double r, double g, double b) Hue2RGB(double hue)
         {
