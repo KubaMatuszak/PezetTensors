@@ -25,14 +25,10 @@ namespace PZWrapper.ColorMgmt
             {
                 double q = lum < 0.5 ? lum * (1 + sat) : lum + sat - lum * sat;
                 double p = 2 * lum - q;
-
-                //r = Hue2RgbAdv(p, q, hue + 1.0 / 3);
-                //g = Hue2RgbAdv(p, q, hue);
-                //b = Hue2RgbAdv(p, q, hue - 1.0 / 3);
-                var t = Hue2RGB(hue);
-                r = t.r;
-                g = t.g;
-                b = t.b;
+                var rgbTup = Hue2RGB(hue);
+                r = rgbTup.r;
+                g = rgbTup.g;
+                b = rgbTup.b;
             }
 
             return Color.FromRgb((byte)(r * 255), (byte)(g * 255), (byte)(b * 255));
@@ -57,7 +53,6 @@ namespace PZWrapper.ColorMgmt
             var big = Stops.Where(s => s.stop >= hue).First();
             var weight = 6 * (hue - small.stop);
 
-
             var meanR = (big.r * weight + small.r * (1 - weight)).Clip(0, 1);
             var meanG = (big.g * weight + small.g * (1 - weight)).Clip(0, 1);
             var meanB = (big.b * weight + small.b * (1 - weight)).Clip(0, 1);
@@ -66,13 +61,13 @@ namespace PZWrapper.ColorMgmt
 
         public static List<(double stop, double r, double g, double b)> Stops = new List<(double stop, double r, double g, double b)>()
         {
-            (0,            1,   0,   0  ),
-            (1/(double)6,  0.7, 0.7, 0  ),
-            (1/(double)3,  0,   1,   0  ),
-            (1/(double)2,  0,   0.7, 0.7),
-            (4/(double)6,  0,   0,   1  ),
-            (5/(double)6,  0.7, 0,   0.7),
-            (1/(double)1,  1,   0,   0  ),
+            (0,       1,   0,   0  ),
+            (1/6.0D,  0.7, 0.7, 0  ),
+            (1/3.0D,  0,   1,   0  ),
+            (1/2.0D,  0,   0.7, 0.7),
+            (4/6.0D,  0,   0,   1  ),
+            (5/6.0D,  0.7, 0,   0.7),
+            (1/1.0D,  1,   0,   0  ),
         };
 
     }
