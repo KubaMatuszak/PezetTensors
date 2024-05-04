@@ -13,7 +13,7 @@ namespace PZWrapper.ColorMgmt
 
         public static System.Windows.Media.Color MapToColor(double hue, double sat, double lum)
         {
-            hue = hue.Clip(0, 1);
+            hue = hue.Clip(0.0D, 1);
             double r, g, b;
             if (sat == 0)
             {
@@ -48,27 +48,28 @@ namespace PZWrapper.ColorMgmt
 
         public static (double r, double g, double b) Hue2RGB(double hue)
         {
-            hue = hue.Clip(0, 1);
+            hue = hue.Clip(0.0D, 1);
             var small = Stops.Where(s => s.stop <= hue).Last();
             var big = Stops.Where(s => s.stop >= hue).First();
             var weight = 6 * (hue - small.stop);
 
-            var meanR = (big.r * weight + small.r * (1 - weight)).Clip(0, 1);
-            var meanG = (big.g * weight + small.g * (1 - weight)).Clip(0, 1);
-            var meanB = (big.b * weight + small.b * (1 - weight)).Clip(0, 1);
+            var meanR = (big.r * weight + small.r * (1 - weight)).Clip(0.0D, 1);
+            var meanG = (big.g * weight + small.g * (1 - weight)).Clip(0.0D, 1);
+            var meanB = (big.b * weight + small.b * (1 - weight)).Clip(0.0D, 1);
             return (meanR, meanG, meanB);
         }
 
-        public static List<(double stop, double r, double g, double b)> Stops = new List<(double stop, double r, double g, double b)>()
-        {
-            (0,       1,   0,   0  ),
-            (1/6.0D,  0.7, 0.7, 0  ),
-            (1/3.0D,  0,   1,   0  ),
-            (1/2.0D,  0,   0.7, 0.7),
-            (4/6.0D,  0,   0,   1  ),
-            (5/6.0D,  0.7, 0,   0.7),
-            (1/1.0D,  1,   0,   0  ),
-        };
+        public static readonly List<(double stop, double r, double g, double b)> Stops = 
+            new List<(double stop, double r, double g, double b)>()
+            {
+                (0.0D,   1.0D, 0.0D, 0.0D),
+                (1/6.0D, 1.0D, 1.0D, 0.0D),
+                (1/3.0D, 0.0D, 1.0D, 0.0D),
+                (1/2.0D, 0.0D, 1.0D, 1.0D),
+                (4/6.0D, 0.0D, 0.0D, 1.0D),
+                (5/6.0D, 1.0D, 0.0D, 1.0D),
+                (1/1.0D, 1.0D, 0.0D, 0.0D),
+            };
 
     }
 }
