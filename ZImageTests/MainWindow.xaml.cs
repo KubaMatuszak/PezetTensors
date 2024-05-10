@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.Win32;
 using PZControlsWpf.Converters;
+using PZWrapper;
+
 
 //using System.Windows.Controls;
 using PZWrapper.Extensions;
@@ -12,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using ZImageTests.Config;
 
 namespace ZImageTests
 {
@@ -57,8 +60,16 @@ namespace ZImageTests
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            CppMethods.Init();
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            //  DynamicDllWrapper wrapper = new DynamicDllWrapper(AppConfig.Instance.CustomConfig.DllPath);
+                
+			//  var sumFunction = wrapper.GetFunctionDelegate<SumDelegate>("Sum");
+			//  double[] values = { 1.0, 2.0, 3.0 };
+			//  double result = sumFunction(values.Length, values);
+
+
+
+
+			OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png|All Files|*.*",
                 Title = "Select an Image File",

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,12 @@ using System.Threading.Tasks;
 namespace PZWrapper.Links
 {
 
-    /// <summary>
-    /// Binding class for C++ methods from dll. 
-    /// </summary>
-    public static class CppMethods
+	/// <summary>
+	/// Binding class for C++ methods from dll. 
+	/// </summary>
+	public static class CppMethods
     {
-        //TODO: autoszukanie tej dllki
-        public const string dllPath = "C:\\Users\\Dell\\source\\repos\\PezetTensors\\x64\\Debug\\PezetTensors.dll";
+        public const string dllPath = "C:\\Users\\rpeze\\source\\repos\\PezetTensors\\bin\\PezetTensors.dll";
 
         [DllImport(dllPath)]
         public static extern double Sum(int len, double[] values);

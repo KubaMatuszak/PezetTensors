@@ -32,9 +32,6 @@ namespace ZImageTests
 				if (File.Exists(configPath))
 				{
 					AppConfig.Load(configPath);
-					CppMethods.
-
-
 				}
 				else
 				{
