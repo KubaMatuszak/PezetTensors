@@ -57,6 +57,7 @@ namespace ZImageTests
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            CppMethods.Init();
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png|All Files|*.*",

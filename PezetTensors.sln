@@ -16,7 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TODO", "TODO", "{E43B5CC3-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessPlayground", "ProcessPlayground", "{16B81DA9-5DF0-49E0-BFED-784BDB39F5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessLib", "ProcessLib\ProcessLib.csproj", "{E92D2928-3DBD-489F-A2A2-DDCE162811E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessLib", "ProcessLib\ProcessLib.csproj", "{E92D2928-3DBD-489F-A2A2-DDCE162811E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{02F0E598-CE83-4336-AD19-CF494B23C3FA}"
+	ProjectSection(SolutionItems) = preProject
+		Settings\CustomConfig.json = Settings\CustomConfig.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
