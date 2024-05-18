@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{02
 		Settings\CustomConfig.json = Settings\CustomConfig.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{46AED958-D1AD-4A98-AAC2-AC716C82B20E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,18 @@ Global
 		{E92D2928-3DBD-489F-A2A2-DDCE162811E4}.Release|x64.Build.0 = Release|Any CPU
 		{E92D2928-3DBD-489F-A2A2-DDCE162811E4}.Release|x86.ActiveCfg = Release|Any CPU
 		{E92D2928-3DBD-489F-A2A2-DDCE162811E4}.Release|x86.Build.0 = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|x64.Build.0 = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Debug|x86.Build.0 = Debug|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|x64.ActiveCfg = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|x64.Build.0 = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|x86.ActiveCfg = Release|Any CPU
+		{46AED958-D1AD-4A98-AAC2-AC716C82B20E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
